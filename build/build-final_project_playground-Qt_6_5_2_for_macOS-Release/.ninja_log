@@ -1,0 +1,117 @@
+# ninja log v5
+155	2540	1701627925774060786	CMakeFiles/StaticGLEW.dir/src/shapes/sphere.cpp.o	fb875a4c3acc75fa
+100	148883	1701628762825696375	CMakeFiles/StaticGLEW.dir/glew/src/glew.c.o	60d16ddb9baef154
+131422	136179	1701627300045960707	CMakeFiles/projects_realtime.dir/src/utils/scenefilereader.cpp.o	b5ef0286d1b3f495
+35	134	1701628614099305000	Simple-OpenGL-Image-Library/libSOIL.a	4f10f9aeafba03cf
+51	112	1701629329227711621	StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+41	382	1701627923621057191	Simple-OpenGL-Image-Library/CMakeFiles/SOIL.dir/SOIL_autogen/mocs_compilation.cpp.o	26031c80d0b22290
+51	112	1701629329227711621	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+51	112	1701629329227711621	StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+133075	133146	1701627019008580197	final_project_playground_autogen/timestamp	ae5aa9647fc344b5
+133075	133146	1701627019008580197	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/timestamp	ae5aa9647fc344b5
+119	2310	1701554246004696217	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/Random.cpp.o	39c5bf47b9d69f02
+1981	2091	1701629331207026000	libStaticGLEW.a	30bb65581a84cd94
+115	1981	1701629331084349189	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	87dae84830eaf881
+51	112	1701629329227711621	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+133075	133146	1701627019008580197	final_project_playground_autogen/mocs_compilation.cpp	ae5aa9647fc344b5
+381	2549	1701627925783737872	CMakeFiles/StaticGLEW.dir/src/shapes/cube.cpp.o	ede93610f17192fb
+42	955	1701627924195019404	Simple-OpenGL-Image-Library/CMakeFiles/SOIL.dir/src/image_DXT.c.o	9d7f895c33e82608
+3110	3535	1701583749978877336	final_project_playground	35d3e419c6f2bd66
+26	574	1701583529291976284	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/mocs_compilation.cpp	20c34af3909f1439
+153	2759	1701627925992065246	CMakeFiles/StaticGLEW.dir/src/camera.cpp.o	221b985cab409be8
+148	381	1701627923621015767	CMakeFiles/StaticGLEW.dir/StaticGLEW_autogen/mocs_compilation.cpp.o	d1a11b6225b34f07
+2184	4075	1701629333176359765	CMakeFiles/projects_realtime.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	d20bb6a30c9a4889
+2092	2172	1701629331287282406	projects_realtime_autogen/timestamp	b67ad58f62efed09
+102	182	1701628614148037000	libTINYXML2.a	b544f9a06e137f0f
+26	574	1701583529291976284	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/timestamp	20c34af3909f1439
+35	100	1701628614063297079	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/timestamp	4b29ba20cb911cba
+67	1727	1701581572419884164	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/ParticleSystem.cpp.o	2a31ef772d317813
+133075	133146	1701627019008580197	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/mocs_compilation.cpp	ae5aa9647fc344b5
+43	3994	1701627927236841595	Simple-OpenGL-Image-Library/CMakeFiles/SOIL.dir/src/stb_image_aug.c.o	bd51bcf094237608
+955	6403	1701627929639074477	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/model.cpp.o	396b11f14f9ea27
+133157	133298	1701627019155185774	CMakeFiles/final_project_playground.dir/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp.o	268bba44aacafbbe
+35	100	1701628614063297079	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/mocs_compilation.cpp	4b29ba20cb911cba
+2092	2172	1701629331287282406	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/timestamp	b67ad58f62efed09
+42	2090	1701627925323295500	Simple-OpenGL-Image-Library/CMakeFiles/SOIL.dir/src/SOIL.c.o	103577527b3def0a
+2092	2172	1701629331287282406	projects_realtime_autogen/mocs_compilation.cpp	b67ad58f62efed09
+160	2617	1701627925851068563	CMakeFiles/StaticGLEW.dir/src/shapes/cylinder.cpp.o	613883af5f66796
+1093	1196	1701627924439000281	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/FountainEmitter.cpp.o	dc46acb7b7c67ce4
+153501	153567	1701471114100056288	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp	6fcd22063ff39a78
+2090	3689	1701627926926749009	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/texture.cpp.o	302a3ace6affad91
+2185	2350	1701629331458561395	CMakeFiles/projects_realtime.dir/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp.o	d7fe30948b678c5
+2540	2643	1701627925887503076	CMakeFiles/TINYXML2.dir/TINYXML2_autogen/mocs_compilation.cpp.o	261d795590d42846
+2181	5076	1701629334175944303	CMakeFiles/projects_realtime.dir/projects_realtime_autogen/mocs_compilation.cpp.o	4ea93a59676a2f0c
+42	1093	1701627924324081786	Simple-OpenGL-Image-Library/CMakeFiles/SOIL.dir/src/image_helper.c.o	5341ca01c358eccb
+35	100	1701628614063297079	TINYXML2_autogen/timestamp	4b29ba20cb911cba
+4518	4760	1701627493238571470	projects_realtime	84a2ed09dddc555e
+2183	5233	1701629334334008739	CMakeFiles/projects_realtime.dir/src/utils/sceneparser.cpp.o	e420f1c74d1c801a
+35	100	1701628614063297079	TINYXML2_autogen/mocs_compilation.cpp	4b29ba20cb911cba
+153501	153567	1701471114100056288	.rcc/qrc_Resources.cpp	6fcd22063ff39a78
+2092	2172	1701629331287282406	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/mocs_compilation.cpp	b67ad58f62efed09
+2183	3307	1701629332410265016	CMakeFiles/projects_realtime.dir/src/settings.cpp.o	3893501b387bcc2f
+2182	5964	1701629335067627790	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	1145b8b5e3009d43
+26	574	1701583529291976284	Simple-OpenGL-Image-Library/SOIL_autogen/timestamp	20c34af3909f1439
+2549	3913	1701627927154833213	CMakeFiles/TINYXML2.dir/tinyxml2/src/tinyxml2.cpp.o	7b32c8956b78c41f
+2182	5596	1701629334700775760	CMakeFiles/projects_realtime.dir/src/mainwindow.cpp.o	e15af28f302319ac
+383	2680	1701627925916017359	CMakeFiles/StaticGLEW.dir/src/shapes/cone.cpp.o	ef7bf622f792639f
+133156	133270	1701627019128336797	CMakeFiles/final_project_playground.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	f5caad593d027242
+26	574	1701583529291976284	Simple-OpenGL-Image-Library/SOIL_autogen/mocs_compilation.cpp	20c34af3909f1439
+2182	5204	1701629334305394857	CMakeFiles/projects_realtime.dir/src/main.cpp.o	eb9272cf0a8c00ab
+32	94	1701629409139978825	TINYXML2_autogen/timestamp	4b29ba20cb911cba
+32	94	1701629409139978825	TINYXML2_autogen/mocs_compilation.cpp	4b29ba20cb911cba
+32	94	1701629409139978825	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/timestamp	4b29ba20cb911cba
+32	94	1701629409139978825	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/mocs_compilation.cpp	4b29ba20cb911cba
+32	98	1701629409140239879	StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+32	98	1701629409140239879	StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+32	98	1701629409140239879	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+32	98	1701629409140239879	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+32	123	1701629409160133603	Simple-OpenGL-Image-Library/CMakeFiles/SOIL.dir/SOIL_autogen/mocs_compilation.cpp.o	17d81fb0227fa05d
+96	259	1701629409293138882	CMakeFiles/TINYXML2.dir/TINYXML2_autogen/mocs_compilation.cpp.o	5a18b8163c5defa5
+101	261	1701629409298664773	CMakeFiles/StaticGLEW.dir/StaticGLEW_autogen/mocs_compilation.cpp.o	d5101dc4ad71dde
+123	312	1701629409351965085	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/FountainEmitter.cpp.o	bc1bf2353031af70
+312	449	1701629409495508000	Simple-OpenGL-Image-Library/libSOIL.a	4f10f9aeafba03cf
+97	2363	1701629411397026689	CMakeFiles/TINYXML2.dir/tinyxml2/src/tinyxml2.cpp.o	36d4a063f42021bf
+103	2365	1701629411396222072	CMakeFiles/StaticGLEW.dir/src/shapes/sphere.cpp.o	aa677327f20dea49
+106	2373	1701629411401134839	CMakeFiles/StaticGLEW.dir/src/shapes/cube.cpp.o	a016759ce45dd98f
+108	2450	1701629411481071388	CMakeFiles/StaticGLEW.dir/src/shapes/cone.cpp.o	6f78fc818ff2d289
+105	2472	1701629411504134341	CMakeFiles/StaticGLEW.dir/src/shapes/cylinder.cpp.o	55aad510d513742
+2363	2493	1701629411539496000	libTINYXML2.a	b544f9a06e137f0f
+261	2705	1701629411739423134	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/texture.cpp.o	96d3cc2356a5aaf5
+102	2853	1701629411887634109	CMakeFiles/StaticGLEW.dir/src/camera.cpp.o	edd37461c811bf12
+259	2983	1701629412018810671	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	5e642e1a78b87ce8
+110	6419	1701629415454531678	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/model.cpp.o	d0e8fa046a6e3f21
+6420	6516	1701629415562665000	libStaticGLEW.a	30bb65581a84cd94
+6516	6593	1701629415639025946	projects_realtime_autogen/timestamp	b67ad58f62efed09
+6516	6593	1701629415639025946	projects_realtime_autogen/mocs_compilation.cpp	b67ad58f62efed09
+6516	6593	1701629415639025946	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/timestamp	b67ad58f62efed09
+6516	6593	1701629415639025946	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/mocs_compilation.cpp	b67ad58f62efed09
+6603	6750	1701629415789953450	CMakeFiles/projects_realtime.dir/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp.o	62eb944f693adf0a
+6602	8087	1701629417115565482	CMakeFiles/projects_realtime.dir/src/settings.cpp.o	bf7da86c85d08716
+6603	8895	1701629417927157930	CMakeFiles/projects_realtime.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	8c3ae9da9d050d6b
+6601	10025	1701629419054254619	CMakeFiles/projects_realtime.dir/projects_realtime_autogen/mocs_compilation.cpp.o	4723622ffecd0b45
+6601	10188	1701629419221205645	CMakeFiles/projects_realtime.dir/src/main.cpp.o	bd86d2022656774d
+6603	10263	1701629419295797739	CMakeFiles/projects_realtime.dir/src/utils/sceneparser.cpp.o	91303af57a968342
+6602	10604	1701629419636297689	CMakeFiles/projects_realtime.dir/src/mainwindow.cpp.o	34ca3c9e828f8573
+6602	10984	1701629420016219359	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	7d10ac3726e4aa81
+6602	11886	1701629420921089046	CMakeFiles/projects_realtime.dir/src/utils/scenefilereader.cpp.o	b5ef0286d1b3f495
+11887	12315	1701629421348691119	projects_realtime	84a2ed09dddc555e
+30	85	1701629445660251412	StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+30	85	1701629445660251412	StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+30	85	1701629445660251412	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+30	85	1701629445660251412	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+30	79	1701629520748067316	StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+30	79	1701629520748067316	StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+30	79	1701629520748067316	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+30	79	1701629520748067316	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+80	1377	1701629522038948288	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	5e642e1a78b87ce8
+1377	1475	1701629522144494000	libStaticGLEW.a	30bb65581a84cd94
+1475	1555	1701629522224264739	projects_realtime_autogen/timestamp	b67ad58f62efed09
+1475	1555	1701629522224264739	projects_realtime_autogen/mocs_compilation.cpp	b67ad58f62efed09
+1475	1555	1701629522224264739	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/timestamp	b67ad58f62efed09
+1475	1555	1701629522224264739	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/mocs_compilation.cpp	b67ad58f62efed09
+1563	2874	1701629523534562175	CMakeFiles/projects_realtime.dir/src/ParticleSystem/IntParticleEmitter.cpp.o	8c3ae9da9d050d6b
+2874	3116	1701629523777507851	projects_realtime	84a2ed09dddc555e
+27	75	1701629543576708111	StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+27	75	1701629543576708111	StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef
+27	75	1701629543576708111	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/timestamp	9c19621cdd5f22ef
+27	75	1701629543576708111	/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp	9c19621cdd5f22ef

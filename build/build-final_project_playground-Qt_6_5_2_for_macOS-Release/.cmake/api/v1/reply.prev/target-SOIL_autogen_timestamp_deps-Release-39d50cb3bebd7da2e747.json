@@ -1,0 +1,62 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"Simple-OpenGL-Image-Library/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"folder" : 
+	{
+		"name" : "Libraries"
+	},
+	"id" : "SOIL_autogen_timestamp_deps::@12a1a65ed48e20e4940a",
+	"isGeneratorProvided" : true,
+	"name" : "SOIL_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "Simple-OpenGL-Image-Library",
+		"source" : "Simple-OpenGL-Image-Library"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/CMakeFiles/SOIL_autogen_timestamp_deps",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/CMakeFiles/SOIL_autogen_timestamp_deps.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

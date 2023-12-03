@@ -1,0 +1,355 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "Simple-OpenGL-Image-Library/libSOIL.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"Simple-OpenGL-Image-Library/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 28,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 24,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 81,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 94,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library"
+				},
+				{
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/Simple-OpenGL-Image-Library"
+				},
+				{
+					"backtrace" : 0,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/src"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/projects_realtime"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/PRIVATE"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/glew/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/Simple-OpenGL-Image-Library/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/tinyobjloader/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/tinyxml2/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/System/Library/Frameworks/OpenGL.framework"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library"
+				},
+				{
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/Simple-OpenGL-Image-Library"
+				},
+				{
+					"backtrace" : 0,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/src"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/projects_realtime"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/PRIVATE"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/glew/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/Simple-OpenGL-Image-Library/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/tinyobjloader/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/tinyxml2/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/System/Library/Frameworks/OpenGL.framework"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				3,
+				4
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "SOIL_autogen_timestamp_deps::@12a1a65ed48e20e4940a"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "SOIL_autogen::@12a1a65ed48e20e4940a"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "Libraries"
+	},
+	"id" : "SOIL::@12a1a65ed48e20e4940a",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"name" : "SOIL",
+	"nameOnDisk" : "libSOIL.a",
+	"paths" : 
+	{
+		"build" : "Simple-OpenGL-Image-Library",
+		"source" : "Simple-OpenGL-Image-Library"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				5,
+				6,
+				7,
+				8,
+				9,
+				10
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				11
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				12
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Simple-OpenGL-Image-Library/src/SOIL.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Simple-OpenGL-Image-Library/src/image_DXT.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Simple-OpenGL-Image-Library/src/image_helper.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Simple-OpenGL-Image-Library/src/stb_image_aug.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Simple-OpenGL-Image-Library/include/SOIL.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Simple-OpenGL-Image-Library/include/image_DXT.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Simple-OpenGL-Image-Library/include/image_helper.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Simple-OpenGL-Image-Library/include/stb_image_aug.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Simple-OpenGL-Image-Library/include/stbi_DDS_aug.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Simple-OpenGL-Image-Library/include/stbi_DDS_aug_c.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/timestamp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/Simple-OpenGL-Image-Library/SOIL_autogen/timestamp.rule",
+			"sourceGroupIndex" : 3
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}
