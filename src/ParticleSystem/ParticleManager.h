@@ -11,74 +11,83 @@
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 #define RAND ((float) rand()) / (float) RAND_MAX
 
-struct ParticleAttributes{
-    glm::vec3 position  = glm::vec3(0,0,0);
-    glm::vec3 velocity  = glm::vec3(0,0,0);
-    glm::vec3 accel     = glm::vec3(0,0,0);
-    glm::vec3 rot_axis  = glm::vec3(0,1,0); // quad
-    float rot_angle     = 0.0f; // degrees //quad
+/* May be useful for quad particle system later
+*/
+//struct ParticleAttributes{
+//    glm::vec3 position  = glm::vec3(0,0,0);
+//    glm::vec3 velocity  = glm::vec3(0,0,0);
+//    glm::vec3 accel     = glm::vec3(0,0,0);
+//    glm::vec3 rot_axis  = glm::vec3(0,1,0); // quad
+//    float rot_angle     = 0.0f; // degrees //quad
 
-    float life = 0.0f;
-    float mass = 0.0f; // quad
+//    float life = 0.0f;
+//    float mass = 0.0f; // quad
 
-    float dist_from_camera = 0.0f;
-    bool operator < (const particleAttributes & p) const
-    {
-        return dist_from_camera < p.dist_from_camera;
-    }
-    bool operator > (const particleAttributes& p) const
-    {
-        return dist_from_camera > p.dist_from_camera;
-    }
-};
+//    float dist_from_camera = 0.0f;
+//    bool operator < (const particleAttributes & p) const
+//    {
+//        return dist_from_camera < p.dist_from_camera;
+//    }
+//    bool operator > (const particleAttributes& p) const
+//    {
+//        return dist_from_camera > p.dist_from_camera;
+//    }
+//};
 
-// basic fountain particle effect
-// emits from origin, shoots up with initial velocity, then drop off the screen
+
+
+/* Basic fountain particle effect
+ * Emits from origin, shoots up with random initial velocity, drop off the screen, then respawn
+ * This is a point particle system. Implement quad particle system later
+*/
 class ParticleManager{
 
 public:
-    bool m_use_sorting = false;
     int m_active_particles = 0;
     int m_num_of_particles;
-    glm::vec3 m_emit_pos; // the origin of the emitter
 
-    // std::vector<int> m_particle_indices; // quad
+    /* Particle attributes, maintained via OpenCL */
     std::vector<float> m_particle_life;
-    std::vector<glm::vec3> m_particle_vertices;
-    std::vector<ParticleAttributes> m_particle_attributes;
 
-    ParticleManager(int number);
-    void changeNumParticles(int new_number);
-    void render(const glm::mat4 &ViewProjection); //TODO
-    void update(float time, float dt); //TODO
-    void create(int id); //TODO
-    // glm::vec4 calculateBillboardRotationMatrix(glm::vec3 particle_pos, glm::vec3 camera_pos); // quad
-
-private:
-
-    // Gluint m_indicesVBO; // quad
-    GLuint m_VAO;
-    Gluint m_verticesVBO;
-    Gluint m_lifeVBO;
-    Gluint m_shader;
-    // GLuint m_transformationsVBO; // quad
-    // GLuint m_rotationsVBO; // quad
-    // GLuint m_scalesVBO; // quad
+    std::vector<glm::vec3> m_particle_velocity;
+    std::vector<glm::vec3> m_particle_randVelOffset;
+    // std::vector<int> m_particle_indices; // quad
     // std::vector<glm::mat4> m_translations; // quad
     // std::vector<glm::mat4> m_rotations; // quad
     // std::vector<float> m_scales; // quad
 
-    cl_mem m_clparticleBuffer;
-    cl_command_queue m_clcommandQueue; // CL command queue for sending instructions to the GPU
-    cl_program m_clprogram; // CL program we run
-    cl_kernel m_clkernel;
+    /* ParticleManager member functions for init + render + update */
+    ParticleManager(int number);
+    ~ParticleManager();
+    void changeNumParticles(int new_number);
+    void render(const glm::mat4 &ViewProjection);
+    void update(float time, float dt);
+    void create(int id);
+    // glm::vec4 calculateBillboardRotationMatrix(glm::vec3 particle_pos, glm::vec3 camera_pos); // quad
 
-    cl_platform_id *m_clplatformIDs;
-    cl_device_id *m_cldeviceIDs;
-    cl_uint m_cldeviceIDCount, m_clplatformIDCount;
-    cl_context m_clcontext;
+private:
+    glm::vec3 m_emit_pos;
+
+    GLuint m_VAO;
+    Gluint m_posVBO;
+    Gluint m_lifeVBO;
+    Gluint m_shader;
+    // Gluint m_indicesVBO; // quad
+    // GLuint m_transformationsVBO; // quad
+    // GLuint m_rotationsVBO; // quad
+    // GLuint m_scalesVBO; // quad
+
+    cl_mem              m_clpositionBuffer, m_clvelocityBuffer, m_clrandVelOffsetBuffer, m_cllifeBuffer;
+    cl_command_queue    m_clcommandQueue;   // CL command queue for sending instructions to the GPU
+    cl_program          m_clprogram;        // CL program we run
+    cl_kernel           m_clkernel;
+    cl_platform_id      *m_clplatformIDs;
+    cl_device_id        *m_cldeviceIDs;
+    cl_uint             m_cldeviceIDCount, m_clplatformIDCount;
+    cl_context          m_clcontext;
 
     void configureVAO();
+    void configureShader();
     void bindAndUpdateBuffers();
 
     void initializeCL();
@@ -88,6 +97,23 @@ private:
 };
 
 
+/* Helper function for reading OpenCL kernel source code -> array source string */
+void loadKernelSource(const char *path, char* source_str, size_t* source_size){
+    fp = fopen(path, "r");
+    if (!fp) {
+        fprintf(stderr, "Fail load kernel.\n");
+        exit(1);
+    }
+    else{
+        fprintf(stdout, "Sucess load kernel.\n");
+    }
+    source_str = (char*)malloc(MAX_SOURCE_SIZE);
+    source_size = fread( source_str, 1, MAX_SOURCE_SIZE, fp);
+    fclose( fp );
+}
+
+
+/* Helper function for OpenCL error checking */
 void checkError(const std::string &source, cl_int error){
     if (error != CL_SUCCESS){
         std::cerr << description << std::endl;
@@ -96,6 +122,8 @@ void checkError(const std::string &source, cl_int error){
     }
 }
 
+
+/* Helper function for OpenCL error checking */
 std::string getErrorString(cl_int error)
 {
     switch(error)
@@ -173,5 +201,3 @@ std::string getErrorString(cl_int error)
     default: return "Unknown OpenCL error";
     }
 }
-
-

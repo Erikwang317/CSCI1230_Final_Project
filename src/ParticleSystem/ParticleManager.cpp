@@ -1,56 +1,68 @@
 #include "ParticleManager.h"
+#include "utils/shaderloader.h"
 #include <iostream>
 #include <algorithm>
 
 #define MAX_SOURCE_SIZE (0x100000)
 
-// Load the kernel source code into the array source_str
-void loadKernelSource(const char *path, char* source_str, size_t* source_size){
-    fp = fopen(path, "r");
-    if (!fp) {
-        fprintf(stderr, "Fail load kernel.\n");
-        exit(1);
-    }
-    else{
-        fprintf(stdout, "Sucess load kernel.\n");
-    }
-    source_str = (char*)malloc(MAX_SOURCE_SIZE);
-    source_size = fread( source_str, 1, MAX_SOURCE_SIZE, fp);
-    fclose( fp );
-}
-
 
 ParticleManager::ParticleManager(int number) {
     m_emit_pos = glm::vec3(0.0f, 0.0f, 0.0f);
-
     m_num_of_particles = number;
-    m_particle_attributes.resize(m_num_of_particles, ParticleAttributes());
-    m_particle_vertices.resize(m_num_of_particles, glm::vec3(0.0f));
-    m_particle_life.resize(m_num_of_particles, 0.0f);
+
+    m_particle_position.resize(m_num_of_particles, glm::vec3(0.0f));
+    m_particle_velocity.resize(m_num_of_particles, glm::vec3(0.0f));
+    m_particle_life.resize(m_num_of_particles, -1.0f);
+    m_particle_randVelOffset(m_num_of_particles);
+    for (int i = 0; i < m_num_of_particles; i++) {
+        m_particle_randVelOffset[i].x = RAND;
+        m_particle_randVelOffset[i].y = RAND;
+        m_particle_randVelOffset[i].z = RAND;
+    }
 
     configureVAO();
 }
 
 
+/* Change particle number, reset particles attributes
+ * TODO: clean the screen
+*/
 void ParticleManager::changeParticleNumber(int new_number) {
     if(new_number == m_num_of_particles) return;
-
     m_num_of_particles = new_number;
-    m_particle_attributes.resize(m_num_of_particles, ParticleAttributes());
-    m_particle_vertices.resize(m_num_of_particles, glm::vec3(0.0f));
-    m_particle_life.resize(m_num_of_particles, 0.0f);
+
+    m_particle_position.resize(m_num_of_particles, glm::vec3(0.0f));
+    m_particle_velocity.resize(m_num_of_particles, glm::vec3(0.0f));
+    m_particle_life.resize(m_num_of_particles, -1.0f);
+    m_particle_randVelOffset(m_num_of_particles);
+    for (int i = 0; i < m_num_of_particles; i++) {
+        m_particle_randVelOffset[i].x = RAND;
+        m_particle_randVelOffset[i].y = RAND;
+        m_particle_randVelOffset[i].z = RAND;
+    }
+
+    configureShader();
+    configureVAO();
 }
 
 
-void ParticleManager::configureVAO()
-{
+void ParticleManager::configureShader(){
+    m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/particle.vert", ":/resources/shaders/particle.frag");
+}
+
+
+/* Bind VAO to VBO
+ * m_posVBO -> pariticle's vertex
+ * m_lifeVBO -> particle's color
+*/
+void ParticleManager::configureVAO(){
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
 
-    glGenBuffers(1, &m_verticesVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, m_verticesVBO);
+    glGenBuffers(1, &m_posVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
     glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(glm::vec3), NULL, GL_DYNAMIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
 
     glGenBuffers(1, &m_lifeVBO);
@@ -63,39 +75,35 @@ void ParticleManager::configureVAO()
 }
 
 
+/* Bind VAO, update VBO
+*/
 void ParticleManager::bindAndUpdateBuffers(){
-    if (m_use_sorting) {
-        std::sort(m_particle_attributes.begin(), m_particle_attributes.end());
-        std::reverse(m_particle_attributes.begin(), m_particle_attributes.end());
-    }
-
     // Bind the VAO
     glBindVertexArray(m_VAO);
 
-    // Send (updated) vertex data to the GPU
-    glBindBuffer(GL_ARRAY_BUFFER, m_verticesVBO);
+    // Send (updated) pos data to the GPU, pos => vertex
+    glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
     glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(glm::vec3), NULL, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(glm::mat4), &m_particle_vertices[0]);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(glm::vec3), &m_particle_position[0]);
 
-    // Send (updated) life data to the GPU
+    // Send (updated) life data to the GPU, life => color
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
     glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(float), NULL, GL_DYNAMIC_DRAW);
     glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(float), &m_particle_life[0]);
 }
 
 
-void ParticleManager::initializeCL(){
-    /*
-    cl_mem m_clparticleBuffer;
-    cl_command_queue m_clcommandQueue; // CL command queue for sending instructions to the GPU
-    cl_program m_clprogram; // CL program we run
-    cl_kernel m_clkernel;
-
+/* Initialize all CL members:
+    cl_uint m_cldeviceIDCount, m_clplatformIDCount;
     cl_platform_id *m_clplatformIDs;
     cl_device_id *m_cldeviceIDs;
-    cl_uint m_cldeviceIDCount, m_clplatformIDCount;
     cl_context m_clcontext;
-    */
+    cl_command_queue m_clcommandQueue;
+    cl_program m_clprogram;
+    cl_kernel m_clkernel;
+    cl_mem m_clpositionBuffer, m_clvelocityBuffer, m_clrandVelOffsetBuffer, m_cllifeBuffer;
+ */
+void ParticleManager::initializeCL(){
     setupCL();
     setupKernel();
     setupBuffer();
@@ -103,38 +111,36 @@ void ParticleManager::initializeCL(){
 
 
 void ParticleManager::create(int id){
-    ParticleAttributes& particle = m_particle_attributes[id];
-
-    particle.position = m_emit_pos + glm::vec3(1 - RAND*2, RAND, 1 - RAND*2);
-    particle.velocity = glm::vec3( 3 - RAND*6,10,3 - RAND*6)*4.0f;
-    particle.accel = glm::vec3(0.0f, -9.8f, 0.0f);
-    particle.rot_axis = glm::vec3(0.0f); // quad
-    particle.rot_angle = RAND*360; // quad
-    particle.life = 100.0f;
-    particle.mass = RAND + 0.5f; // quad
+    m_particle_life[id] = 1.0f;
+    m_particle_position[id] = m_emit_pos;
+    m_particle_velocity[id] = glm::vec3(0.0f,10.0f,0.0f) + m_particle_randVelOffset[id];
 }
 
 
 void ParticleManager::render(const glm::mat4 &ViewProjection){
     if (m_num_of_particles == 0) return;
+
+    // bind VAO and update local vector data to VBO
+    glUseProgram(m_shader);
     bindAndUpdateBuffers();
 
-    glUniformMatrix4fv(glGetUniformLocation(m_shader, "ViewProjection"), 1, GL_FALSE, &ViewProjection[0][0]);
+    glUniformMatrix4fv(glGetUniformLocation(m_shader, "u_ViewProjection"), 1, GL_FALSE, &ViewProjection[0][0]);
     glDrawArrays(GL_POINTS, 0, m_num_of_particles);
 
     // Unbind VAO
     glBindVertexArray(0);
+    glUseProgram(0);
 }
 
 
-void ParticleManager::update(float time, float dt) {
+void ParticleManager::update(float dt) {
 
     // slowly increase the number of its particles to the max amount instead of shooting all at once
     if (m_active_particles < m_num_of_particles) {
         int batch = 14;
         int limit = std::min(m_num_of_particles - m_active_particles, batch);
         for (int i = 0; i < limit; i++) {
-            createNewParticle(m_active_particles);
+            create(i);
             m_active_particles++;
         }
     }
@@ -142,28 +148,17 @@ void ParticleManager::update(float time, float dt) {
         m_active_particles = m_num_of_particles; // in case resized to a smaller particle number
     }
 
-
-//    for(int i = 0; i < active_particles; i++){
-//        particleAttributes & particle = p_attributes[i];
-//        if(particle.life == 0.0f){
-//            createNewParticle(i);
-//        }
-//        particle.position = particle.position + particle.velocity*dt + particle.accel*(dt*dt)*0.5f;
-//        particle.velocity = particle.velocity + particle.accel*dt;
-//    }
-
-
-    // update the above using openGL logic
+    // update by OpenCL kernel function
     cl_int error;
 
     // define the arguments to our kernel
-    // clSetKernelArg(kernel, 0, sizeof(cl_mem), &particleBuffer);
-    // clSetKernelArg(kernel, 1, sizeof(int), &numPoints);
-    // clSetKernelArg(kernel, 4, sizeof(int), &numDivisions);
-    // clSetKernelArg(kernel, 2, sizeof(int), &start);
-    // clSetKernelArg(kernel, 3, sizeof(int), &end);
+    clSetKernelArg(m_clkernel, 0, sizeof(cl_mem), &m_clpositionBuffer);
+    clSetKernelArg(m_clkernel, 1, sizeof(cl_mem), &m_clvelocityBuffer);
+    clSetKernelArg(m_clkernel, 2, sizeof(cl_mem), &m_clrandVelOffsetBuffer);
+    clSetKernelArg(m_clkernel, 3, sizeof(cl_mem), &m_cllifeBuffer);
+    clSetKernelArg(m_clkernel, 4, sizeof(float), &dt);
 
-    size_t workSize[1] = {(size_t)(m_num_of_particles)};
+    size_t workSize[1] = { (size_t)(m_num_of_particles) };
     error = clEnqueueNDRangeKernel(m_clcommandQueue,					// our command queue
                                    m_clkernel,							// our kernel
                                    1,                                   // dimensions of work
@@ -172,22 +167,46 @@ void ParticleManager::update(float time, float dt) {
                                    NULL,                                // local work size: NULL means OpenCL figures this out
                                    0,                                   // no events in wait list
                                    NULL,                                // no event list to wait for before executing this command
-                                   NULL);                               // no event is associated with this command
+                                   NULL                                 // no event is associated with this command
+                                   );
     checkError("clEnqueueNDRangeKernel()", error);
 
+    // read back from cl buffers to local vector data
     error = clEnqueueReadBuffer(m_clcommandQueue,
                                 m_clparticleBuffer,                     // CL buffer where we're getting the data from
                                 CL_TRUE,
                                 0,
                                 m_num_of_particles*sizeof(glm::vec3),   // how much to read, in bytes
-                                m_particle_vertices,                    // where to read to
+                                m_particle_position.data(),                    // where to read to
                                 0,
                                 NULL,
                                 NULL
                                 );
     checkError("clEnqueueReadBuffer()", error);
-    clFinish(commandQueue);
+    error = clEnqueueReadBuffer(m_clcommandQueue,
+                                m_clvelocityBuffer,                     // CL buffer where we're getting the data from
+                                CL_TRUE,
+                                0,
+                                m_num_of_particles*sizeof(glm::vec3),   // how much to read, in bytes
+                                m_particle_velocity.data(),                    // where to read to
+                                0,
+                                NULL,
+                                NULL
+                                );
+    checkError("clEnqueueReadBuffer()", error);
+    error = clEnqueueReadBuffer(m_clcommandQueue,
+                                m_cllifeBuffer,                     // CL buffer where we're getting the data from
+                                CL_TRUE,
+                                0,
+                                m_num_of_particles*sizeof(float),   // how much to read, in bytes
+                                m_particle_life.data(),                    // where to read to
+                                0,
+                                NULL,
+                                NULL
+                                );
+    checkError("clEnqueueReadBuffer()", error);
 
+    clFinish(commandQueue);
 }
 
 
@@ -277,7 +296,7 @@ void ParticleManager::setupKernel(){
     }
 
     // everything was successful at this point so far, so create our kernel using the compiled program
-    kernel = clCreateKernel(program, kernelName.c_str(), &error);
+    m_clkernel = clCreateKernel(m_clprogram, "particle", &error);
     checkError("clCreateKernel()", error);
 }
 
@@ -285,11 +304,95 @@ void ParticleManager::setupKernel(){
 void ParticleManager::setupBuffer(){
     // Create memory buffers on the device for each vector
     cl_int error;
-    m_clparticleBuffer = clCreateBuffer(m_clcontext,
+
+    m_clpositionBuffer = clCreateBuffer(m_clcontext,
                                         CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
                                         m_num_of_particles*sizeof(glm::vec3),
-                                        m_particle_vertices,
+                                        m_particle_position.data(),
                                         &error
                                         );
-    checkError("clCreateBuffer(): m_clparticleBuffer", error);
+    checkError("clCreateBuffer(): m_clpositionBuffer", error);
+
+    m_clvelocityBuffer = clCreateBuffer(m_clcontext,
+                                        CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+                                        m_num_of_particles*sizeof(glm::vec3),
+                                        m_particle_velocity.data(),
+                                        &error
+                                        );
+    checkError("clCreateBuffer(): m_clvelocityBuffer", error);
+
+    m_clrandVelOffsetBuffer = clCreateBuffer(m_clcontext,
+                                             CL_MEM_READ | CL_MEM_COPY_HOST_PTR,
+                                             m_num_of_particles*sizeof(glm::vec3),
+                                             m_particle_randVelOffset.data(),
+                                             &error
+                                             );
+    checkError("clCreateBuffer(): m_clrandVelOffsetBuffer", error);
+
+    m_cllifeBuffer = clCreateBuffer(m_clcontext,
+                                    CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+                                    m_num_of_particles*sizeof(float),
+                                    m_particle_life.data(),
+                                    &error
+                                    );
+    checkError("clCreateBuffer(): m_cllifeBuffer", error);
+}
+
+
+ParticleManager::~ParticleManager() {
+    // Release OpenCL resources
+    if (m_clcommandQueue) {
+        clReleaseCommandQueue(m_clcommandQueue);
+        m_clcommandQueue = nullptr;
+    }
+
+    if (m_clkernel) {
+        clReleaseKernel(m_clkernel);
+        m_clkernel = nullptr;
+    }
+
+    if (m_clprogram) {
+        clReleaseProgram(m_clprogram);
+        m_clprogram = nullptr;
+    }
+
+    if (m_clpositionBuffer) {
+        clReleaseMemObject(m_clpositionBuffer);
+        m_clpositionBuffer = nullptr;
+    }
+
+    if (m_clvelocityBuffer) {
+        clReleaseMemObject(m_clvelocityBuffer);
+        m_clvelocityBuffer = nullptr;
+    }
+
+    if (m_clrandVelOffsetBuffer) {
+        clReleaseMemObject(m_clrandVelOffsetBuffer);
+        m_clrandVelOffsetBuffer = nullptr;
+    }
+
+    if (m_cllifeBuffer) {
+        clReleaseMemObject(m_cllifeBuffer);
+        m_cllifeBuffer = nullptr;
+    }
+
+    if (m_clcontext) {
+        clReleaseContext(m_clcontext);
+        m_clcontext = nullptr;
+    }
+
+    if (m_clplatformIDs) {
+        delete[] m_clplatformIDs;
+        m_clplatformIDs = nullptr;
+    }
+
+    if (m_cldeviceIDs) {
+        delete[] m_cldeviceIDs;
+        m_cldeviceIDs = nullptr;
+    }
+
+    // Release OpenGL resources
+    glDeleteBuffers(1, &m_posVBO);
+    glDeleteBuffers(1, &m_lifeVBO);
+    glDeleteVertexArrays(1, &m_VAO);
 }

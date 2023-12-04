@@ -66,6 +66,8 @@ add_library(StaticGLEW STATIC glew/src/glew.c
     src/test.txt
     src/ParticleSystem/ParticleManager.h
     src/ParticleSystem/ParticleManager.cpp
+    resources/shaders/particle.vert
+    resources/shaders/particle.frag
 )
 
 #target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PARALLEL_TRANSFORM=1)

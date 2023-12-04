@@ -53,7 +53,7 @@ void Realtime::finish() {
 
 void Realtime::initializeGL() {
 
-
+    hello_world();
 
 //    FILE *fp;
 //    char *source_str;
@@ -72,16 +72,15 @@ void Realtime::initializeGL() {
 //    else{
 //        fprintf(stdout, "read success.\n");
 //    }
-    hello_world();
 
-    m_blurRadius = 2;
+//    m_blurRadius = 2;
     m_defaultFBO = 2;
     m_devicePixelRatio = this->devicePixelRatio();
     m_screen_width = size().width() * m_devicePixelRatio;
     m_screen_height = size().height() * m_devicePixelRatio;
     m_fbo_width = m_screen_width;
     m_fbo_height = m_screen_height;
-    m_texelSize = glm::vec2(1.0f/m_screen_width, 1.0f/m_screen_height);
+//    m_texelSize = glm::vec2(1.0f/m_screen_width, 1.0f/m_screen_height);
 
     m_timer = startTimer(1000/60);
     m_elapsedTimer.start();
@@ -102,39 +101,27 @@ void Realtime::initializeGL() {
     // Tells OpenGL how big the screen is
     glViewport(0, 0, size().width() * m_devicePixelRatio, size().height() * m_devicePixelRatio);
 
-    // TODO: anything requiring OpenGL calls when the program starts should be done here
-    m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/default.vert", ":/resources/shaders/default.frag");
+//    m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/default.vert", ":/resources/shaders/default.frag");
 
-    Sphere sphere;
-    sphere.updateParams(settings.shapeParameter1, settings.shapeParameter2);
-    m_sphere_data_size = sphere.getDataSize();
-    setVboAndBindVao(m_sphere_vao, m_sphere_vbo, sphere.generateShape());
+//    Sphere sphere;
+//    sphere.updateParams(settings.shapeParameter1, settings.shapeParameter2);
+//    m_sphere_data_size = sphere.getDataSize();
+//    setVboAndBindVao(m_sphere_vao, m_sphere_vbo, sphere.generateShape());
 
-    Cube cube;
-    cube.updateParams(settings.shapeParameter1);
-    m_cube_data_size = cube.getDataSize();
-    setVboAndBindVao(m_cube_vao, m_cube_vbo, cube.generateShape());
+//    Cube cube;
+//    cube.updateParams(settings.shapeParameter1);
+//    m_cube_data_size = cube.getDataSize();
+//    setVboAndBindVao(m_cube_vao, m_cube_vbo, cube.generateShape());
 
-    Cylinder cylinder;
-    cylinder.updateParams(settings.shapeParameter1, settings.shapeParameter2);
-    m_cylinder_data_size = cylinder.getDataSize();
-    setVboAndBindVao(m_cylinder_vao, m_cylinder_vbo, cylinder.generateShape());
+//    Cylinder cylinder;
+//    cylinder.updateParams(settings.shapeParameter1, settings.shapeParameter2);
+//    m_cylinder_data_size = cylinder.getDataSize();
+//    setVboAndBindVao(m_cylinder_vao, m_cylinder_vbo, cylinder.generateShape());
 
-    Cone cone;
-    cone.updateParams(settings.shapeParameter1, settings.shapeParameter2);
-    m_cone_data_size = cone.getDataSize();
-    setVboAndBindVao(m_cone_vao, m_cone_vbo, cone.generateShape());
-
-
-//    // add fountain
-//    auto* monkey = new Drawable(":/resources/objfiles/suzanne.obj");
-//    auto* quad = new Drawable(":/resources/objfiles/quad.obj");
-
-//    int particles_slider = 1000;
-//    FountainEmitter f_emitter = FountainEmitter(monkey,  particles_slider);
-
-    m_is_init = true;
-
+//    Cone cone;
+//    cone.updateParams(settings.shapeParameter1, settings.shapeParameter2);
+//    m_cone_data_size = cone.getDataSize();
+//    setVboAndBindVao(m_cone_vao, m_cone_vbo, cone.generateShape());
 
 //    /* init m_texture_shader + m_fullscreen_vbo + m_fullscreen_vbo + m_fbo */
 //    m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
@@ -178,6 +165,7 @@ void Realtime::initializeGL() {
 
 //    // m_fbo
 //    makeFBO();
+    m_is_init = true;
 }
 
 
