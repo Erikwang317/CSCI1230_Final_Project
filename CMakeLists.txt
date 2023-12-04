@@ -24,7 +24,6 @@ find_package(OpenCL REQUIRED)
 # Allows you to include files from within those directories, without prefixing their filepaths
 include_directories(src)
 
-
 # Specifies .cpp and .h files to be passed to the compiler
 add_executable(${PROJECT_NAME}
     src/main.cpp
@@ -43,8 +42,12 @@ add_executable(${PROJECT_NAME}
     src/utils/sceneparser.h
     src/utils/shaderloader.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
-)
 
+    src/ParticleSystem/hello_world.h
+    src/ParticleSystem/hello_world.cpp
+    src/ParticleSystem/ParticleManager.h
+    src/ParticleSystem/ParticleManager.cpp
+)
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
 add_subdirectory(glm)
@@ -61,20 +64,8 @@ add_library(StaticGLEW STATIC glew/src/glew.c
     src/shapes/cube.h
     src/shapes/cone.cpp
     src/shapes/cone.h
-    src/ParticleSystem/hello_world.h
-    src/ParticleSystem/hello_world.cpp
-    src/test.txt
-    src/ParticleSystem/ParticleManager.h
-    src/ParticleSystem/ParticleManager.cpp
-    resources/shaders/particle.vert
-    resources/shaders/particle.frag
 )
-
-#target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PARALLEL_TRANSFORM=1)
-#target_compile_options(${PROJECT_NAME} PRIVATE -stdlib=libstdc++)
-
 include_directories(${PROJECT_NAME} PRIVATE glew/include)
-
 
 # Specifies libraries to be linked (Qt components, glew, etc)
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -87,36 +78,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${OpenCL_LIBRARY}
 )
 
-include_directories(
-    Simple-OpenGL-Image-Library/include/
-    tinyobjloader/include/
-    tinyxml2/include/
-)
-
-add_subdirectory(Simple-OpenGL-Image-Library)
-
-set(TINYXML2_SOURCE
-    tinyxml2/src/tinyxml2.cpp
-)
-
-set(TINYXML2_HEADERS
-        tinyxml2/include/tinyxml2.h
-)
-
-include_directories(tinyxml2/include/)
-
-add_library(TINYXML2 STATIC
-    ${TINYXML2_SOURCE}
-    ${TINYXML2_HEADERS}
-)
-target_link_libraries(TINYXML2)
-set_target_properties(TINYXML2
-    PROPERTIES
-    PROJECT_LABEL tinyxml2
-    FOLDER "Libraries"
-)
-
-
 # Specifies other files
 qt6_add_resources(${PROJECT_NAME} "Resources"
     PREFIX
@@ -126,6 +87,8 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/default.vert
         resources/shaders/texture.frag
         resources/shaders/texture.vert
+        resources/shaders/particle.vert
+        resources/shaders/particle.frag
 )
 
 # GLEW: this provides support for Windows (including 64-bit)
@@ -136,7 +99,6 @@ if (WIN32)
     glu32
   )
 endif()
-
 
 # Set this flag to silence warnings on Windows
 if (MSVC OR MSYS OR MINGW)

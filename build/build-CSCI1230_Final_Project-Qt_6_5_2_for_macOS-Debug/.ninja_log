@@ -1,0 +1,59 @@
+# ninja log v5
+1	137	1701721163783428493	StaticGLEW_autogen/mocs_compilation.cpp	8f13c9d4a237b8a6
+138	247	1701721163903920692	CMakeFiles/StaticGLEW.dir/StaticGLEW_autogen/mocs_compilation.cpp.o	db67efc2e39f8076
+1	137	1701721163783428493	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/StaticGLEW_autogen/timestamp	8f13c9d4a237b8a6
+139	1453	1701721165094634302	CMakeFiles/StaticGLEW.dir/src/shapes/sphere.cpp.o	51a2f4b52967355f
+1	137	1701721163783428493	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/StaticGLEW_autogen/mocs_compilation.cpp	8f13c9d4a237b8a6
+139	1450	1701721165094956697	CMakeFiles/StaticGLEW.dir/src/shapes/cylinder.cpp.o	81487b313fdad86f
+1	137	1701721163783428493	StaticGLEW_autogen/timestamp	8f13c9d4a237b8a6
+138	1235	1701721164883124437	CMakeFiles/StaticGLEW.dir/glew/src/glew.c.o	f4b0af78f0987367
+3232	6963	1701721170609199238	CMakeFiles/final_project_playground.dir/src/realtime.cpp.o	9b14feb4029fee98
+1951	3184	1701721166823800624	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+139	1455	1701721165096352711	CMakeFiles/StaticGLEW.dir/src/shapes/cone.cpp.o	7cc9db85db97cbb4
+3232	6456	1701721170104069567	CMakeFiles/final_project_playground.dir/src/main.cpp.o	de9dc35ad6c64302
+1951	3184	1701721166823800624	final_project_playground_autogen/timestamp	53d31acfd28afdfb
+3234	7017	1701721170667281048	CMakeFiles/final_project_playground.dir/src/utils/scenefilereader.cpp.o	b1582b7a9231dbac
+3184	3232	1701721166894882712	.rcc/qrc_Resources.cpp	789fa40c2c25a786
+1951	3184	1701721166823800624	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/timestamp	53d31acfd28afdfb
+1951	3184	1701721166823800624	final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+139	1454	1701721165097287767	CMakeFiles/StaticGLEW.dir/src/shapes/cube.cpp.o	73fdf4f930f70416
+3184	3232	1701721166894882712	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp	789fa40c2c25a786
+1843	1951	1701721165615167000	libStaticGLEW.a	5512cf521194c7f6
+138	1843	1701721165497142851	CMakeFiles/StaticGLEW.dir/src/camera.cpp.o	7005b9055df9f4d
+7018	7296	1701721170951851547	final_project_playground	e51ccfafac6e411f
+3233	4452	1701721168103948879	CMakeFiles/final_project_playground.dir/src/settings.cpp.o	d5f8526147a2f3d0
+3234	3352	1701721167008805007	CMakeFiles/final_project_playground.dir/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp.o	d9713837adb02721
+3233	6724	1701721170371209379	CMakeFiles/final_project_playground.dir/src/mainwindow.cpp.o	18ae24d613851fd7
+3234	6404	1701721170053382287	CMakeFiles/final_project_playground.dir/src/utils/sceneparser.cpp.o	589c627831eb8149
+3232	6305	1701721169948813745	CMakeFiles/final_project_playground.dir/final_project_playground_autogen/mocs_compilation.cpp.o	5b785274ce37dc94
+33	99	1701721853668273136	StaticGLEW_autogen/timestamp	8f13c9d4a237b8a6
+33	99	1701721853668273136	StaticGLEW_autogen/mocs_compilation.cpp	8f13c9d4a237b8a6
+33	99	1701721853668273136	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/StaticGLEW_autogen/timestamp	8f13c9d4a237b8a6
+33	99	1701721853668273136	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/StaticGLEW_autogen/mocs_compilation.cpp	8f13c9d4a237b8a6
+102	181	1701721853746760994	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/ParticleManager.cpp.o	ce076bde0ec02aac
+102	1851	1701721855411606961	CMakeFiles/StaticGLEW.dir/src/ParticleSystem/hello_world.cpp.o	ad617aa75507b212
+1852	1982	1701721855551316000	libStaticGLEW.a	46b3e2ec685878d0
+1982	2058	1701721855627035533	final_project_playground_autogen/timestamp	53d31acfd28afdfb
+1982	2058	1701721855627035533	final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+1982	2058	1701721855627035533	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/timestamp	53d31acfd28afdfb
+1982	2058	1701721855627035533	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+2067	2096	1701721855664928290	.rcc/qrc_Resources.cpp	789fa40c2c25a786
+2067	2096	1701721855664928290	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp	789fa40c2c25a786
+2096	2188	1701721855751289721	CMakeFiles/final_project_playground.dir/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp.o	d9713837adb02721
+2188	2452	1701721856011334492	final_project_playground	cb59a4bc94d0dcd5
+19	1108	1701721972058123000	final_project_playground_autogen/timestamp	53d31acfd28afdfb
+19	1108	1701721972058123000	final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+19	1108	1701721972058123000	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/timestamp	53d31acfd28afdfb
+19	1108	1701721972058123000	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+1108	4017	1701721974968979099	CMakeFiles/final_project_playground.dir/final_project_playground_autogen/mocs_compilation.cpp.o	5b785274ce37dc94
+1108	4075	1701721975031712339	CMakeFiles/final_project_playground.dir/src/main.cpp.o	de9dc35ad6c64302
+1109	4350	1701721975305568065	CMakeFiles/final_project_playground.dir/src/mainwindow.cpp.o	18ae24d613851fd7
+1109	4494	1701721975450080337	CMakeFiles/final_project_playground.dir/src/realtime.cpp.o	9b14feb4029fee98
+4494	4934	1701721975890295480	final_project_playground	cb59a4bc94d0dcd5
+19	1138	1701722482444741000	final_project_playground_autogen/timestamp	53d31acfd28afdfb
+19	1138	1701722482444741000	final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+19	1138	1701722482444741000	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/timestamp	53d31acfd28afdfb
+19	1138	1701722482444741000	/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/mocs_compilation.cpp	53d31acfd28afdfb
+1139	4718	1701722486020960406	CMakeFiles/final_project_playground.dir/final_project_playground_autogen/mocs_compilation.cpp.o	5b785274ce37dc94
+1139	4747	1701722486059699445	CMakeFiles/final_project_playground.dir/src/main.cpp.o	de9dc35ad6c64302
+1139	5067	1701722486378966514	CMakeFiles/final_project_playground.dir/src/mainwindow.cpp.o	18ae24d613851fd7

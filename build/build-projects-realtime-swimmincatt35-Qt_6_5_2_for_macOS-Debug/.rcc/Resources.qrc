@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="resources/shaders/default.frag">/Users/charleston/Documents/Brown/Courses/Computer Graphics/projects-realtime-swimmincatt35/resources/shaders/default.frag</file>
-    <file alias="resources/shaders/default.vert">/Users/charleston/Documents/Brown/Courses/Computer Graphics/projects-realtime-swimmincatt35/resources/shaders/default.vert</file>
-  </qresource>
-</RCC>
-
