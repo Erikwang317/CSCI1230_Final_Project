@@ -389,6 +389,11 @@
 		"/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6Xml/Qt6XmlTargets-relwithdebinfo.cmake",
 		"/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6Xml/Qt6XmlAdditionalTargetInfo.cmake",
 		"/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6Xml/Qt6XmlVersionlessTargets.cmake",
+		"/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindOpenCL.cmake",
+		"/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckSymbolExists.cmake",
+		"/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakePushCheckState.cmake",
+		"/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake",
+		"/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageMessage.cmake",
 		"/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
 	],
 	"CMAKE_SOURCE_DIR" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground",
@@ -419,7 +424,7 @@
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/src",
-		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/projects_realtime",
+		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/final_project_playground",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/PRIVATE",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/glew/include",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/Simple-OpenGL-Image-Library/include",
@@ -454,7 +459,7 @@
 	[
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp",
-		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/mocs_compilation.cpp"
+		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/mocs_compilation.cpp"
 	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 4,
@@ -478,7 +483,7 @@
 	[
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp",
-		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/projects_realtime_autogen/mocs_compilation.cpp"
+		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/mocs_compilation.cpp"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

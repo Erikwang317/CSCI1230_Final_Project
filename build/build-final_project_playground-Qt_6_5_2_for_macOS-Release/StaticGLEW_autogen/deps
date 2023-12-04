@@ -5,14 +5,8 @@ StaticGLEW_autogen/timestamp: \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/CMakeFiles/3.24.2/CMakeCXXCompiler.cmake \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/CMakeFiles/3.24.2/CMakeSystem.cmake \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/glew/src/glew.c \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/FountainEmitter.cpp \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/FountainEmitter.h \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/IntParticleEmitter.cpp \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/IntParticleEmitter.h \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/model.cpp \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/model.h \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/texture.cpp \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/texture.h \
+	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/hello_world.cpp \
+	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/ParticleSystem/hello_world.h \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/camera.cpp \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/camera.h \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/shapes/cone.cpp \
@@ -23,7 +17,6 @@ StaticGLEW_autogen/timestamp: \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/shapes/cylinder.h \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/shapes/sphere.cpp \
 	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/src/shapes/sphere.h \
-	/Users/charleston/Documents/Brown/Courses/Computer\ Graphics/final_project_playground/tinyobjloader/include/tiny_obj_loader.h \
 	/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6/FindWrapAtomic.cmake \
 	/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6/FindWrapOpenGL.cmake \
 	/Users/charleston/Qt/6.5.2/macos/lib/cmake/Qt6/Qt6Config.cmake \
@@ -221,6 +214,7 @@ StaticGLEW_autogen/timestamp: \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeGenericSystem.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake \
+	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakePushCheckState.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckCSourceCompiles.cmake \
@@ -228,11 +222,13 @@ StaticGLEW_autogen/timestamp: \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckCXXSourceCompiles.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckIncludeFile.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckLibraryExists.cmake \
+	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckSymbolExists.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-C.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-CXX.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GNU.cmake \
+	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindOpenCL.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindOpenGL.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake \
 	/Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageMessage.cmake \

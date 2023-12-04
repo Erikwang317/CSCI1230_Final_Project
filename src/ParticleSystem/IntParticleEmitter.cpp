@@ -6,7 +6,7 @@
 //    #include <execution>
 //#endif // USE_PARALLEL_TRANSFORM
 
-#include <execution>
+// #include <execution>
 
 IntParticleEmitter::IntParticleEmitter(Drawable* _model, int number) {
     model = _model;
@@ -42,31 +42,31 @@ void IntParticleEmitter::bindAndUpdateBuffers()
         std::reverse(p_attributes.begin(), p_attributes.end());
     }
 
-#ifdef USE_PARALLEL_TRANSFORM
-    //Calculate the model matrix in parallel to save performance
-    std::transform(std::execution::par_unseq, p_attributes.begin(), p_attributes.end(), translations.begin(),
-        [](particleAttributes p)->glm::mat4 {
-            if (p.life == 0) return glm::mat4(0.0f);
-            return glm::translate(glm::mat4(), p.position);
-        });
+//#ifdef USE_PARALLEL_TRANSFORM
+//    //Calculate the model matrix in parallel to save performance
+//    std::transform(std::execution::par_unseq, p_attributes.begin(), p_attributes.end(), translations.begin(),
+//        [](particleAttributes p)->glm::mat4 {
+//            if (p.life == 0) return glm::mat4(0.0f);
+//            return glm::translate(glm::mat4(), p.position);
+//        });
 
-        //*//
-    if(use_rotations)
-         std::transform(std::execution::par_unseq, p_attributes.begin(), p_attributes.end(), rotations.begin(),
-            [](particleAttributes p)->glm::mat4 {
-                if (p.life == 0) return glm::mat4(0.0f);
-                return glm::rotate(glm::mat4(), glm::radians(p.rot_angle), p.rot_axis);
-            });
-    else {
-        std::fill(rotations.begin(), rotations.end(), glm::mat4(1.0f));
-    }
+//        //*//
+//    if(use_rotations)
+//         std::transform(std::execution::par_unseq, p_attributes.begin(), p_attributes.end(), rotations.begin(),
+//            [](particleAttributes p)->glm::mat4 {
+//                if (p.life == 0) return glm::mat4(0.0f);
+//                return glm::rotate(glm::mat4(), glm::radians(p.rot_angle), p.rot_axis);
+//            });
+//    else {
+//        std::fill(rotations.begin(), rotations.end(), glm::mat4(1.0f));
+//    }
 
-    std::transform(std::execution::par_unseq, p_attributes.begin(), p_attributes.end(), scales.begin(),
-        [](particleAttributes p)->float {
-            return p.mass;
-        });
-        //*/
-#else
+//    std::transform(std::execution::par_unseq, p_attributes.begin(), p_attributes.end(), scales.begin(),
+//        [](particleAttributes p)->float {
+//            return p.mass;
+//        });
+//        //*/
+//#else
     for (int i = 0; i < p_attributes.size(); i++) {
         auto p = p_attributes[i];
         translations[i] = glm::translate(glm::mat4(), p.position);
@@ -85,7 +85,8 @@ void IntParticleEmitter::bindAndUpdateBuffers()
         auto p = p_attributes[i];
         scales[i] = p.mass;
     }
-#endif // USE_PARALLEL_TRANSFORM
+
+//#endif // USE_PARALLEL_TRANSFORM
 
     //Bind the VAO
     glBindVertexArray(emitterVAO);
@@ -119,7 +120,6 @@ void IntParticleEmitter::configureVAO()
 {
     glGenVertexArrays(1, &emitterVAO);
     glBindVertexArray(emitterVAO);
-
 
     //We are using the model's buffer but since they are already in the GPU from the Drawable's constructor we just need to configure
     //our own VAO by using glVertexAttribPointer and glEnableVertexAttribArray but without sending any data with glBufferData.

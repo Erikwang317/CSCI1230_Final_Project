@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 11.0.2, 2023-12-03T14:07:20. -->
+<!-- Written by QtCreator 11.0.2, 2023-12-03T21:44:24. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -403,6 +403,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory">/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>

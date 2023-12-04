@@ -300,3 +300,24 @@ int main(int, char **)
 
     return 0;
 }
+Determining if the CL_VERSION_1_2 exist passed with the following output:
+Change Dir: /Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Users/charleston/Qt/Tools/Ninja/ninja cmTC_e443b && [1/2] Building C object CMakeFiles/cmTC_e443b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e443b
+
+
+File /Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/System/Library/Frameworks/OpenCL.framework/Headers/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_1_2
+  return ((int*)(&CL_VERSION_1_2))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}

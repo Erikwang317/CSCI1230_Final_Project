@@ -10,7 +10,9 @@
 #include "shapes/cube.h"
 #include "shapes/cylinder.h"
 #include "shapes/sphere.h"
-#include "ParticleSystem/IntParticleEmitter.h"
+
+#include "src/ParticleSystem/hello_world.h"
+//#include <filesystem>
 
 
 // ================== Project 5: Lights, Camera
@@ -50,6 +52,27 @@ void Realtime::finish() {
 }
 
 void Realtime::initializeGL() {
+
+
+
+//    FILE *fp;
+//    char *source_str;
+//    size_t source_size;
+
+//    std::filesystem::path relativePath = "src/test.txt";
+//    std::filesystem::path absolutePath = std::filesystem::absolute(relativePath);
+//    //fp = fopen("/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/src/test.txt", "r");
+//    fp = fopen(absolutePath.c_str(), "r");
+
+//    if (!fp) {
+//        fprintf(stdout, "Hello World.\n");
+//        fprintf(stderr, "Failed to load kernel.\n");
+//        exit(1);
+//    }
+//    else{
+//        fprintf(stdout, "read success.\n");
+//    }
+    hello_world();
 
     m_blurRadius = 2;
     m_defaultFBO = 2;
@@ -101,6 +124,14 @@ void Realtime::initializeGL() {
     cone.updateParams(settings.shapeParameter1, settings.shapeParameter2);
     m_cone_data_size = cone.getDataSize();
     setVboAndBindVao(m_cone_vao, m_cone_vbo, cone.generateShape());
+
+
+//    // add fountain
+//    auto* monkey = new Drawable(":/resources/objfiles/suzanne.obj");
+//    auto* quad = new Drawable(":/resources/objfiles/quad.obj");
+
+//    int particles_slider = 1000;
+//    FountainEmitter f_emitter = FountainEmitter(monkey,  particles_slider);
 
     m_is_init = true;
 

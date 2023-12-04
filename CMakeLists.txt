@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Sets project name
-project(projects_realtime LANGUAGES CXX C)
+project(final_project_playground LANGUAGES CXX C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -19,9 +19,11 @@ find_package(Qt6 REQUIRED COMPONENTS Gui)
 find_package(Qt6 REQUIRED COMPONENTS OpenGL)
 find_package(Qt6 REQUIRED COMPONENTS OpenGLWidgets)
 find_package(Qt6 REQUIRED COMPONENTS Xml)
+find_package(OpenCL REQUIRED)
 
 # Allows you to include files from within those directories, without prefixing their filepaths
 include_directories(src)
+
 
 # Specifies .cpp and .h files to be passed to the compiler
 add_executable(${PROJECT_NAME}
@@ -41,10 +43,8 @@ add_executable(${PROJECT_NAME}
     src/utils/sceneparser.h
     src/utils/shaderloader.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
-
-    src/ParticleSystem/IntParticleEmitter.h
-    src/ParticleSystem/IntParticleEmitter.cpp
 )
+
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
 add_subdirectory(glm)
@@ -61,18 +61,11 @@ add_library(StaticGLEW STATIC glew/src/glew.c
     src/shapes/cube.h
     src/shapes/cone.cpp
     src/shapes/cone.h
-
-    src/ParticleSystem/model.h
-    src/ParticleSystem/model.cpp
-    src/ParticleSystem/FountainEmitter.h
-    src/ParticleSystem/FountainEmitter.cpp
-    src/ParticleSystem/IntParticleEmitter.h
-    src/ParticleSystem/IntParticleEmitter.cpp
-    src/ParticleSystem/texture.h
-    src/ParticleSystem/texture.cpp
-
-    tinyobjloader/include/tiny_obj_loader.h
-
+    src/ParticleSystem/hello_world.h
+    src/ParticleSystem/hello_world.cpp
+    src/test.txt
+    src/ParticleSystem/ParticleManager.h
+    src/ParticleSystem/ParticleManager.cpp
 )
 
 #target_compile_definitions(${PROJECT_NAME} PRIVATE USE_PARALLEL_TRANSFORM=1)
@@ -89,6 +82,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt::OpenGLWidgets
     Qt::Xml
     StaticGLEW
+    ${OpenCL_LIBRARY}
 )
 
 include_directories(

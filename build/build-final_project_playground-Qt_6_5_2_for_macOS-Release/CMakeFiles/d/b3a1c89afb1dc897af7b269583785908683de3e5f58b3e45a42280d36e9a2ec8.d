@@ -203,6 +203,7 @@ TINYXML2_autogen/timestamp: \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeGenericSystem.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake \
+  /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakePushCheckState.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckCSourceCompiles.cmake \
@@ -210,11 +211,13 @@ TINYXML2_autogen/timestamp: \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckCXXSourceCompiles.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckIncludeFile.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckLibraryExists.cmake \
+  /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CheckSymbolExists.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-C.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-CXX.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GNU.cmake \
+  /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindOpenCL.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindOpenGL.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake \
   /Users/charleston/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageMessage.cmake \

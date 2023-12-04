@@ -1,0 +1,209 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "libTINYXML2.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 106,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 74,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 88,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-Wno-deprecated-volatile -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5"
+				},
+				{
+					"fragment" : "-std=gnu++20"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release"
+				},
+				{
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground"
+				},
+				{
+					"backtrace" : 0,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/src"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/final_project_playground"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/PRIVATE"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/glew/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/Simple-OpenGL-Image-Library/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/tinyobjloader/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/final_project_playground/tinyxml2/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "TINYXML2_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "TINYXML2_autogen::@6890427a1f51a3e7e1df"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "Libraries"
+	},
+	"id" : "TINYXML2::@6890427a1f51a3e7e1df",
+	"name" : "TINYXML2",
+	"nameOnDisk" : "libTINYXML2.a",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				2
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				3
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				4
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "tinyxml2/src/tinyxml2.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "tinyxml2/include/tinyxml2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/timestamp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/build-final_project_playground-Qt_6_5_2_for_macOS-Release/TINYXML2_autogen/timestamp.rule",
+			"sourceGroupIndex" : 3
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}
