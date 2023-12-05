@@ -132,7 +132,7 @@ void hello_world(){
     ret = clEnqueueReadBuffer(command_queue, b_mem_obj, CL_TRUE, 0,
                               LIST_SIZE * sizeof(int), B, 0, NULL, NULL);
 
-    clFinish(command_queue);
+    clFinish(command_queue); // wait
 
     // Display the result to the screen
     for(i = 0; i < LIST_SIZE; i++)

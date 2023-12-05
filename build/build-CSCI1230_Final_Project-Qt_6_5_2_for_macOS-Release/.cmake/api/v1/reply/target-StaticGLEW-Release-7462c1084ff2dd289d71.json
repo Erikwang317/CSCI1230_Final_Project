@@ -26,7 +26,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 56,
+				"line" : 57,
 				"parent" : 0
 			},
 			{
@@ -38,7 +38,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 68,
+				"line" : 26,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 69,
 				"parent" : 0
 			}
 		]
@@ -73,14 +79,18 @@
 				},
 				{
 					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem"
+				},
+				{
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/final_project_playground"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/PRIVATE"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/glew/include"
 				}
 			],
@@ -128,14 +138,18 @@
 				},
 				{
 					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem"
+				},
+				{
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/final_project_playground"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/PRIVATE"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/glew/include"
 				}
 			],
@@ -149,11 +163,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "StaticGLEW_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "StaticGLEW_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "StaticGLEW_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "StaticGLEW::@6890427a1f51a3e7e1df",

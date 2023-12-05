@@ -8,14 +8,17 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
-
+#include <random>
 #include "utils/shaderloader.h"
 
 //#include "utils/shaderloader.h"
 
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
-#define RAND ((float) rand()) / (float) RAND_MAX
 #define MAX_SOURCE_SIZE (0x100000)
+#define RAND ((float) arc4random()) / (float) UINT32_MAX - 0.5f
+
+//// standard normal distribution
+
 
 /* May be useful for quad particle system later
 */
@@ -51,13 +54,14 @@ class ParticleManager{
 public:
     int m_active_particles = 0;
     int m_num_of_particles;
+    float m_max_life = 1.2f;
 
     /* Particle attributes, maintained via OpenCL */
     std::vector<float> m_particle_life;
 
-    std::vector<glm::vec3> m_particle_position;
-    std::vector<glm::vec3> m_particle_velocity;
-    std::vector<glm::vec3> m_particle_randVelOffset;
+    std::vector<glm::vec4> m_particle_position;
+    std::vector<glm::vec4> m_particle_velocity;
+    std::vector<glm::vec4> m_particle_randVelOffset;
     // std::vector<int> m_particle_indices; // quad
     // std::vector<glm::mat4> m_translations; // quad
     // std::vector<glm::mat4> m_rotations; // quad
@@ -73,7 +77,10 @@ public:
     // glm::vec4 calculateBillboardRotationMatrix(glm::vec3 particle_pos, glm::vec3 camera_pos); // quad
 
 private:
-    glm::vec3 m_emit_pos;
+    bool m_init = false;
+    glm::vec4 m_emit_pos;
+    glm::vec4 m_bornColor = glm::vec4(0.0f, 0.1f, 0.1f, 1.0f);
+    glm::vec4 m_deadColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
     GLuint m_VAO;
     GLuint m_posVBO;
@@ -94,7 +101,7 @@ private:
     cl_context          m_clcontext;
 
     void configureVAO();
-    void configureShader();
+    void configureShaderProgram();
     void bindAndUpdateBuffers();
 
     void initializeCL();

@@ -5,10 +5,6 @@ StaticGLEW_autogen/timestamp: \
   CMakeFiles/3.24.2/CMakeCXXCompiler.cmake \
   CMakeFiles/3.24.2/CMakeSystem.cmake \
   /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/glew/src/glew.c \
-  /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.cpp \
-  /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.h \
-  /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/ParticleSystem/hello_world.cpp \
-  /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/ParticleSystem/hello_world.h \
   /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/camera.cpp \
   /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/camera.h \
   /Users/charleston/Documents/Brown/Courses/Computer\ Graphics/CSCI1230_Final_Project/src/shapes/cone.cpp \

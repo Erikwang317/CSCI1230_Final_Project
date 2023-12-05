@@ -26,7 +26,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 51,
+				"line" : 57,
 				"parent" : 0
 			},
 			{
@@ -38,7 +38,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 68,
+				"line" : 26,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 69,
 				"parent" : 0
 			}
 		]
@@ -73,14 +79,18 @@
 				},
 				{
 					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem"
+				},
+				{
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/final_project_playground"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/PRIVATE"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/glew/include"
 				}
 			],
@@ -100,9 +110,7 @@
 				4,
 				6,
 				8,
-				10,
-				13,
-				15
+				10
 			]
 		},
 		{
@@ -130,14 +138,18 @@
 				},
 				{
 					"backtrace" : 3,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem"
+				},
+				{
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/final_project_playground"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/PRIVATE"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/glew/include"
 				}
 			],
@@ -151,11 +163,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "StaticGLEW_autogen::@6890427a1f51a3e7e1df"
+			"id" : "StaticGLEW_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "StaticGLEW_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "StaticGLEW_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "StaticGLEW::@6890427a1f51a3e7e1df",
@@ -178,9 +190,7 @@
 				4,
 				6,
 				8,
-				10,
-				13,
-				15
+				10
 			]
 		},
 		{
@@ -191,23 +201,21 @@
 				5,
 				7,
 				9,
-				11,
-				12,
-				14
+				11
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				16
+				12
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				17
+				13
 			]
 		}
 	],
@@ -280,28 +288,6 @@
 			"backtrace" : 1,
 			"path" : "src/shapes/cone.h",
 			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/ParticleSystem/hello_world.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/ParticleSystem/hello_world.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/ParticleSystem/ParticleManager.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/ParticleSystem/ParticleManager.cpp",
-			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,

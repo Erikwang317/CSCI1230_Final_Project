@@ -23,6 +23,7 @@ find_package(OpenCL REQUIRED)
 
 # Allows you to include files from within those directories, without prefixing their filepaths
 include_directories(src)
+include_directories(src/ParticleSystem)
 
 # Specifies .cpp and .h files to be passed to the compiler
 add_executable(${PROJECT_NAME}

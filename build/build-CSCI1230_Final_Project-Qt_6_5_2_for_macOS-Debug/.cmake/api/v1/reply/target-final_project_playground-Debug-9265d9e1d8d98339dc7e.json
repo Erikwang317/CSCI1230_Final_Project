@@ -48,13 +48,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 28,
+				"line" : 29,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 71,
+				"line" : 72,
 				"parent" : 0
 			},
 			{
@@ -294,32 +294,38 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 68,
+				"line" : 26,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 69,
 				"parent" : 0
 			},
 			{
 				"command" : 9,
 				"file" : 0,
-				"line" : 82,
+				"line" : 83,
 				"parent" : 0
 			},
 			{
 				"command" : 8,
 				"file" : 15,
 				"line" : 314,
-				"parent" : 49
+				"parent" : 50
 			},
 			{
 				"command" : 7,
 				"file" : 15,
 				"line" : 2055,
-				"parent" : 50
+				"parent" : 51
 			},
 			{
 				"command" : 6,
 				"file" : 15,
 				"line" : 1708,
-				"parent" : 51
+				"parent" : 52
 			}
 		]
 	},
@@ -329,7 +335,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-Wno-deprecated-volatile -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5"
+					"fragment" : "-Wno-deprecated-volatile -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5"
 				},
 				{
 					"fragment" : "-std=gnu++20"
@@ -344,10 +350,6 @@
 				{
 					"backtrace" : 2,
 					"define" : "QT_GUI_LIB"
-				},
-				{
-					"backtrace" : 2,
-					"define" : "QT_NO_DEBUG"
 				},
 				{
 					"backtrace" : 2,
@@ -369,14 +371,14 @@
 			"includes" : 
 			[
 				{
-					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release"
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug"
 				},
 				{
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project"
 				},
 				{
 					"backtrace" : 0,
-					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/include"
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/include"
 				},
 				{
 					"backtrace" : 47,
@@ -384,14 +386,18 @@
 				},
 				{
 					"backtrace" : 48,
+					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem"
+				},
+				{
+					"backtrace" : 49,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/final_project_playground"
 				},
 				{
-					"backtrace" : 48,
+					"backtrace" : 49,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/PRIVATE"
 				},
 				{
-					"backtrace" : 48,
+					"backtrace" : 49,
 					"path" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/glew/include"
 				},
 				{
@@ -484,22 +490,24 @@
 				4,
 				5,
 				6,
-				15
+				16,
+				18,
+				19
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"id" : "final_project_playground_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 2,
+			"id" : "StaticGLEW::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 0,
 			"id" : "final_project_playground_autogen::@6890427a1f51a3e7e1df"
 		},
 		{
-			"backtrace" : 2,
-			"id" : "StaticGLEW::@6890427a1f51a3e7e1df"
+			"id" : "final_project_playground_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "final_project_playground::@6890427a1f51a3e7e1df",
@@ -508,7 +516,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wno-deprecated-volatile -O3 -DNDEBUG",
+				"fragment" : "-Wno-deprecated-volatile -g",
 				"role" : "flags"
 			},
 			{
@@ -618,7 +626,9 @@
 				4,
 				5,
 				6,
-				15
+				16,
+				18,
+				19
 			]
 		},
 		{
@@ -632,22 +642,24 @@
 				11,
 				12,
 				13,
-				14
+				14,
+				15,
+				17
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				16
+				20
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				17,
-				18
+				21,
+				22
 			]
 		}
 	],
@@ -657,7 +669,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/mocs_compilation.cpp",
+			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/mocs_compilation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -737,28 +749,50 @@
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 52,
+			"backtrace" : 1,
+			"path" : "src/ParticleSystem/hello_world.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/ParticleSystem/hello_world.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/ParticleSystem/ParticleManager.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/ParticleSystem/ParticleManager.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 53,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp",
+			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/timestamp",
+			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/timestamp",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp.rule",
+			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp.rule",
 			"sourceGroupIndex" : 3
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/timestamp.rule",
+			"path" : "build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/final_project_playground_autogen/timestamp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],

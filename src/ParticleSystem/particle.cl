@@ -1,46 +1,24 @@
-__kernel void particle(__global float3* position,
-                       __global float3* velocity,
-                       __global float3* randveloffset,
-                       __global float* life,
+__kernel void particle(__global float4* position_list,
+                       __global float4* velocity_list,
+                       __global float4* randveloffset_list,
+                       __global float* life_list,
                        float dt
                        )
 {
-    // operate only on the particle that we're supposed to
-    int workSize = get_local_size(0);	// number of kernel instances in this work group
-    int i = (get_group_id(0) * workSize) + get_local_id(0);
-    // Alternatively, do:
-    // size_t i = get_global_id(0);
+    int i = get_global_id(0);
+    // float3 is an alias for float4, why are you such a dick OpenCL?
 
-    // retrieve particle position
-    float3 *posPtr = &position[i];
-    // retrieve particle velocity
-    float3 *velPtr = &velocity[i];
-    // retrieve particle life
-    float *lifePtr = &life[i];
-
-    // (life==-1.0f) means particle not created yet
-    if (*lifePtr != -1.0f){
-
-        // reset from emit point if life ends or position.y fall below -5.0f
-        if (*lifePtr < 0.0f || posPtr[2] < -5.0f){
-            // reset pos/vel/life
-            *posPtr = float3(0.0f,0.0f,0.0f);
-
-            float3 randoffset = randveloffset[i];
-            *velPtr[0] = 0.0f+randoffset[0];
-            *velPtr[1] = 10.0f+randoffset[1];
-            *velPtr[2] = 0.0f+randoffset[2];
-
-            *lifePtr = 1.0f;
-        }
-        else {
-            // update(dereference) velocity's value
-            *velPtr += -9.8 * dt;
-            // update(dereference) position's value
-            *posPtr += vel * dt;
-            // update(dereference) life's value
-            *lifePtr -= dt;
-        }
+    if (life_list[i] > 0.0f){
+        velocity_list[i].y = velocity_list[i].y - 10.0f * dt;
+        position_list[i] = position_list[i] + velocity_list[i] * dt;
+        life_list[i] = life_list[i] - 1*dt;
     }
-
+    else{
+        life_list[i] = 1.2f;
+        position_list[i].x = 0.0f; position_list[i].y = 0.0f; position_list[i].z = 0.0f; position_list[i].w = 1.0f;
+        velocity_list[i].x = 0.0f+randveloffset_list[i].x;
+        velocity_list[i].y = 7.0f+randveloffset_list[i].y;
+        velocity_list[i].z = 0.0f+randveloffset_list[i].z;
+        velocity_list[i].w = 0.0f;
+    }
 }

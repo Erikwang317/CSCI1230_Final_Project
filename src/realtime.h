@@ -57,45 +57,13 @@ private:
 
     // Device Correction Variables
     int m_devicePixelRatio;
-
-
-//    int m_fbo_width;
-//    int m_fbo_height;
     int m_screen_width;
     int m_screen_height;
-//    int m_blurRadius;
 
     bool m_is_init = false;
 
-//    GLuint m_texture_shader;
-//    GLuint m_defaultFBO;
-//    GLuint m_fbo;
-//    GLuint m_fbo_texture;
-//    GLuint m_fbo_renderbuffer;
-//    GLuint m_fullscreen_vbo;
-//    GLuint m_fullscreen_vao;
-
-//    GLuint m_shader; // Stores id of shader program
-//    GLuint m_cube_vbo;
-//    GLuint m_cylinder_vbo;
-//    GLuint m_cone_vbo;
-//    GLuint m_sphere_vbo;
-//    GLuint m_cube_vao;
-//    GLuint m_cylinder_vao;
-//    GLuint m_cone_vao;
-//    GLuint m_sphere_vao;
-
-//    int m_cube_data_size;
-//    int m_cylinder_data_size;
-//    int m_cone_data_size;
-//    int m_sphere_data_size;
-
+    int m_num_of_particles = 10000;
+    ParticleManager m_ParticleManager;
     RenderData m_renderData;
     Camera m_camera;
-
-//    void setVboAndBindVao(GLuint& vao, GLuint& vbo, const std::vector<float>& vertex_data);
-//    void makeFBO();
-//    void paintExampleGeometry();
-//    void paintTexture(GLuint texture, bool isPerPixelFilter, bool isKernelBasedFilter);
-
 };

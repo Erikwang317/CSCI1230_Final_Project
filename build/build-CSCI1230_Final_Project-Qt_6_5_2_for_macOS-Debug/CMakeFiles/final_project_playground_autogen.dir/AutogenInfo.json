@@ -402,6 +402,18 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.h",
+			"MU",
+			"VSV6B3AZZN/moc_ParticleManager.cpp",
+			null
+		],
+		[
+			"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem/hello_world.h",
+			"MU",
+			"VSV6B3AZZN/moc_hello_world.cpp",
+			null
+		],
+		[
 			"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/mainwindow.h",
 			"MU",
 			"UVLADIE3JM/moc_mainwindow.cpp",
@@ -474,6 +486,7 @@
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src",
+		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/final_project_playground",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/PRIVATE",
 		"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/glew/include",
@@ -530,6 +543,16 @@
 	"SETTINGS_FILE" : "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/final_project_playground_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/ParticleSystem/hello_world.cpp",
+			"MU",
+			null
+		],
 		[
 			"/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/src/main.cpp",
 			"MU",
