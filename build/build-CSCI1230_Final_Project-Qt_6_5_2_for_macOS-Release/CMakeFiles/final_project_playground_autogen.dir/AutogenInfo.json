@@ -447,9 +447,9 @@
 	"HEADERS" : 
 	[
 		[
-			"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.h",
+			"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/QuadParticleManager.h",
 			"MU",
-			"VSV6B3AZZN/moc_ParticleManager.cpp",
+			"VSV6B3AZZN/moc_QuadParticleManager.cpp",
 			null
 		],
 		[
@@ -590,7 +590,7 @@
 	"SOURCES" : 
 	[
 		[
-			"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.cpp",
+			"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/QuadParticleManager.cpp",
 			"MU",
 			null
 		],

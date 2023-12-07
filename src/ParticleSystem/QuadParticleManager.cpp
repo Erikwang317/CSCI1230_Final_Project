@@ -1,7 +1,6 @@
-#include "ParticleManager.h"
+#include "QuadParticleManager.h"
 #include <cstdlib>
 #include <fstream>
-
 
 double generateGaussianNoise() {
     std::random_device rd;
@@ -10,10 +9,9 @@ double generateGaussianNoise() {
     return distribution(gen);
 }
 
-
-ParticleManager::ParticleManager(int number): m_num_of_particles(number) {
+QuadParticleManager::QuadParticleManager(int number): m_num_of_particles(number) {
     if (number > 0){
-        m_particle_position.resize(m_num_of_particles * 4, glm::vec4(0.0f));// modified to draw triangles
+        m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));// modified to draw triangles
         m_particle_velocity.resize(m_num_of_particles, glm::vec4(0.0f));
         m_particle_life.resize(m_num_of_particles, -1.0f);
         m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
@@ -21,10 +19,9 @@ ParticleManager::ParticleManager(int number): m_num_of_particles(number) {
     m_emit_pos = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-
 /* Change particle number, reset particles attributes
 */
-void ParticleManager::changeNumParticles(int new_number) {
+void QuadParticleManager::changeNumParticles(int new_number) {
     if(!m_init){
         configureShaderProgram();
         m_init = true;
@@ -34,7 +31,7 @@ void ParticleManager::changeNumParticles(int new_number) {
 
     m_num_of_particles = new_number;
 
-    m_particle_position.resize(m_num_of_particles * 4, glm::vec4(0.0f));// modified to draw triangles
+    m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));// modified to draw triangles
     m_particle_velocity.resize(m_num_of_particles, glm::vec4(0.0f));
     m_particle_life.resize(m_num_of_particles, -1.0f);
     m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
@@ -43,31 +40,31 @@ void ParticleManager::changeNumParticles(int new_number) {
     initializeCL();
 }
 
-
-void ParticleManager::configureShaderProgram(){
+void QuadParticleManager::configureShaderProgram(){
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/particle.vert", ":/resources/shaders/particle.frag");
 }
-
 
 /* Bind VAO to VBO
  * m_posVBO -> pariticle's vertex
  * m_lifeVBO -> particle's color
 */
-void ParticleManager::configureVAO(){
+void QuadParticleManager::configureVAO(){
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
 
     glGenBuffers(1, &m_posVBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* 4 *sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles *sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
+    glVertexAttribDivisor(0, 1);
 
     glGenBuffers(1, &m_lifeVBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
     glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* sizeof(float), NULL, GL_DYNAMIC_DRAW);
     glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(1);
+    glVertexAttribDivisor(1, 1); //??
 
 //    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
 //    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -78,64 +75,39 @@ void ParticleManager::configureVAO(){
 //    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, (void*)0);
 //    glEnableVertexAttribArray(2);
 //    glVertexAttribDivisor(2, 1);
-
-
     glBindVertexArray(0);
 }
 
 
 /* Bind VAO, update VBO
 */
-void ParticleManager::bindAndUpdateBuffers(){
+void QuadParticleManager::bindAndUpdateBuffers(){
     // Bind the VAO
     glBindVertexArray(m_VAO);
 
     // Send (updated) pos data to the GPU, pos => vertex
     glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* 4 *sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles* 4 *sizeof(glm::vec4), &m_particle_position[0]);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles * sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles * sizeof(glm::vec4), &m_particle_position[0]);
 
     // Send (updated) life data to the GPU, life => color
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* 4 *sizeof(float), NULL, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles* 4 *sizeof(float), &m_particle_life[0]);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(float), NULL, GL_DYNAMIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(float), &m_particle_life[0]);
 }
 
 
-void ParticleManager::initializeCL(){
+void QuadParticleManager::initializeCL(){
     setupCL();
     setupKernel();
 }
 
-
-//void ParticleManager::create(int id){
-//    m_particle_randVelOffset[id].x = 0.5*generateGaussianNoise(); //RAND
-//    m_particle_randVelOffset[id].y = 0.5*generateGaussianNoise(); //RAND
-//    m_particle_randVelOffset[id].z = 0.5*generateGaussianNoise(); //RAND
-//    m_particle_randVelOffset[id].w = 0;
-
-//    m_particle_life[id] = m_max_life;
-//    m_particle_position[id] = m_emit_pos;
-//    m_particle_velocity[id] = glm::vec4(0.0f, 7.0f, 0.0f, 0.0f)+m_particle_randVelOffset[id];
-//}
-
-void ParticleManager::create(int id){
-    int vertex_id = id * 4;
-    float size = 0.5f;
+void QuadParticleManager::create(int id){
 
     // Define the two triangles in CCW order
     glm::vec3 center = glm::vec3(m_emit_pos);
-    glm::vec3 vertices[4] = {
-        center + glm::vec3(-size, -size, 0.0f), // Bottom Left
-        center + glm::vec3(size, -size, 0.0f),  // Bottom Right
-        center + glm::vec3(-size, size, 0.0f),  // Top Left
-        center + glm::vec3(size, size, 0.0f),   // Top Right
-    };
 
-    // Update the particle's position buffer with the six new vertices
-    for (int i = 0; i < 4; ++i) {
-        m_particle_position[vertex_id + i] = glm::vec4(vertices[i], 1.f);
-    }
+    m_particle_position[id] = glm::vec4(center, 1.f);
 
     m_particle_randVelOffset[id] = glm::vec4(0.5 * generateGaussianNoise(), // RAND
                                              0.5 * generateGaussianNoise(), // RAND
@@ -146,7 +118,7 @@ void ParticleManager::create(int id){
 }
 
 
-void ParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight){
+void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight){
     if (m_num_of_particles == 0) return;
 
     // bind VAO and update local vector data to VBO
@@ -164,9 +136,9 @@ void ParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &c
     glUniform1f(glGetUniformLocation(m_shader, "u_max_life"), m_max_life);
     //glDrawArrays(GL_POINTS, 0, m_num_of_particles);
 
-    //glDrawArrays(GL_TRIANGLES, 0, m_num_of_particles * 4); //draw triagnles
+    //glDrawArrays(GL_TRIANGLES, 0, m_num_of_particles); //draw triagnles
 
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4*m_num_of_particles, m_num_of_particles);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 40, m_num_of_particles);
 
     // Unbind VAO
     glBindVertexArray(0);
@@ -174,7 +146,7 @@ void ParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &c
 }
 
 
-void ParticleManager::update(float dt) {
+void QuadParticleManager::update(float dt) {
     // slowly increase the number of its particles to the max amount instead of shooting all at once
     if (m_active_particles < m_num_of_particles) {
         int batch = 10;
@@ -251,7 +223,7 @@ void ParticleManager::update(float dt) {
 }
 
 
-void ParticleManager::setupCL(){
+void QuadParticleManager::setupCL(){
     cl_int error;
 
     // determine how many OpenCL platforms we have
@@ -296,7 +268,7 @@ void ParticleManager::setupCL(){
 }
 
 
-void ParticleManager::setupKernel(){
+void QuadParticleManager::setupKernel(){
     setenv("CL_LOG_ERRORS", "stdout", 1);
     // create kernel
     char *build_log;						// error log if compilation failed
@@ -359,7 +331,7 @@ void ParticleManager::setupKernel(){
 }
 
 
-void ParticleManager::setupBuffer(){
+void QuadParticleManager::setupBuffer(){
     // Create memory buffers on the device for each vector
     cl_int error;
 
@@ -386,43 +358,10 @@ void ParticleManager::setupBuffer(){
     error = clEnqueueWriteBuffer(m_clcommandQueue, m_cllifeBuffer, CL_TRUE, 0, m_num_of_particles*sizeof(float),
                                  m_particle_life.data(), 0, NULL, NULL);
     checkError("clEnqueueWriteBuffer(): m_cllifeBuffer", error);
-
-//    m_clpositionBuffer = clCreateBuffer(m_clcontext,
-//                                        CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-//                                        m_num_of_particles*sizeof(glm::vec3),
-//                                        m_particle_position.data(),
-//                                        &error
-//                                        );
-//    checkError("clCreateBuffer(): m_clpositionBuffer", error);
-
-//    m_clvelocityBuffer = clCreateBuffer(m_clcontext,
-//                                        CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-//                                        m_num_of_particles*sizeof(glm::vec3),
-//                                        m_particle_velocity.data(),
-//                                        &error
-//                                        );
-//    checkError("clCreateBuffer(): m_clvelocityBuffer", error);
-
-//    m_clrandVelOffsetBuffer = clCreateBuffer(m_clcontext,
-//                                             CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-//                                             m_num_of_particles*sizeof(glm::vec3),
-//                                             m_particle_randVelOffset.data(),
-//                                             &error
-//                                             );
-//    checkError("clCreateBuffer(): m_clrandVelOffsetBuffer", error);
-
-//    m_cllifeBuffer = clCreateBuffer(m_clcontext,
-//                                    CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-//                                    m_num_of_particles*sizeof(float),
-//                                    m_particle_life.data(),
-//                                    &error
-//                                    );
-//    checkError("clCreateBuffer(): m_cllifeBuffer", error);
-//
 }
 
 
-ParticleManager::~ParticleManager() {
+QuadParticleManager::~QuadParticleManager() {
     // Release OpenCL resources
     if (m_clcommandQueue) {
         clReleaseCommandQueue(m_clcommandQueue);

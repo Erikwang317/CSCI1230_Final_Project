@@ -19,6 +19,7 @@ void main()
     float g = clamp(out_position.z,0.0f,1.0f);
     float b = clamp(out_position.y,0.0f,1.0f);
 
+
     //color *= texture(u_texture, out_texCoords);
     fragColor = fragColor + 0.5*vec4(r,g,b,1.0f);
 

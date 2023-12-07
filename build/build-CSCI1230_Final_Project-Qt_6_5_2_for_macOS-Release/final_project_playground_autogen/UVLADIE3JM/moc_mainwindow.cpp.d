@@ -948,7 +948,7 @@
   /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glm/vec3.hpp \
   /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glm/vec4.hpp \
   /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glm/vector_relational.hpp \
-  /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/ParticleManager.h \
+  /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/QuadParticleManager.h \
   /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/camera.h \
   /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/realtime.h \
   /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/utils/aspectratiowidget/aspectratiowidget.hpp \

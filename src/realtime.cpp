@@ -12,8 +12,6 @@
 #include "shapes/sphere.h"
 
 
-
-
 // ================== Project 5: Lights, Camera
 
 Realtime::Realtime(QWidget *parent)
@@ -77,7 +75,7 @@ void Realtime::paintGL() {
     glm::mat4 camViewProjection = m_camera.getProjectionMatrix()*m_camera.getViewMatrix();
     glm::vec3 right = glm::cross(m_camera.getLook(), m_camera.getUp());
 
-    m_ParticleManager.render(camViewProjection, right);
+    m_QuadParticleManager.render(camViewProjection, right);
 }
 
 void Realtime::resizeGL(int w, int h) {
@@ -105,8 +103,8 @@ void Realtime::sceneChanged() {
     m_is_init = true;
 
     std::cout << "void Realtime::sceneChanged()" << std::endl;
-    std::cout << "m_ParticleManager.changeNumParticles(m_num_of_particles);" << std::endl;
-    m_ParticleManager.changeNumParticles(m_num_of_particles);
+    std::cout << "m_QuadParticleManager.changeNumParticles(m_num_of_particles);" << std::endl;
+    m_QuadParticleManager.changeNumParticles(m_num_of_particles);
 
     update(); // asks for a PaintGL() call to occur
 }
@@ -186,7 +184,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     }
 
     if (m_is_init){
-        m_ParticleManager.update(0.01*deltaTime);
+        m_QuadParticleManager.update(0.01*deltaTime);
     }
 
     update(); // asks for a PaintGL() call to occur
