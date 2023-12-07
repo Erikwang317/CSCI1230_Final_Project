@@ -1,11 +1,11 @@
 <RCC>
   <qresource prefix="/">
-    <file alias="resources/shaders/default.frag">/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/resources/shaders/default.frag</file>
-    <file alias="resources/shaders/default.vert">/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/resources/shaders/default.vert</file>
-    <file alias="resources/shaders/texture.frag">/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/resources/shaders/texture.frag</file>
-    <file alias="resources/shaders/texture.vert">/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/resources/shaders/texture.vert</file>
-    <file alias="resources/shaders/particle.vert">/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/resources/shaders/particle.vert</file>
-    <file alias="resources/shaders/particle.frag">/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/resources/shaders/particle.frag</file>
+    <file alias="resources/shaders/default.frag">/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/shaders/default.frag</file>
+    <file alias="resources/shaders/default.vert">/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/shaders/default.vert</file>
+    <file alias="resources/shaders/texture.frag">/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/shaders/texture.frag</file>
+    <file alias="resources/shaders/texture.vert">/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/shaders/texture.vert</file>
+    <file alias="resources/shaders/particle.vert">/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/shaders/particle.vert</file>
+    <file alias="resources/shaders/particle.frag">/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/shaders/particle.frag</file>
   </qresource>
 </RCC>
 

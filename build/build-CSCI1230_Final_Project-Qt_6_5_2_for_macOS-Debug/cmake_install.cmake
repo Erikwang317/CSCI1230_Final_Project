@@ -1,4 +1,4 @@
-# Install script for directory: /Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project
+# Install script for directory: /Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/glm/cmake_install.cmake")
+  include("/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/glm/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/charleston/Documents/Brown/Courses/Computer Graphics/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

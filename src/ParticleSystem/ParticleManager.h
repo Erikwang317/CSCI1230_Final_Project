@@ -71,7 +71,7 @@ public:
     ParticleManager(int number=0);
     ~ParticleManager();
     void changeNumParticles(int new_number);
-    void render(const glm::mat4 &ViewProjection);
+    void render(const glm::mat4 &ViewProjection, const glm::vec3 &right);
     void update(float dt);
     void create(int id);
     // glm::vec4 calculateBillboardRotationMatrix(glm::vec3 particle_pos, glm::vec3 camera_pos); // quad

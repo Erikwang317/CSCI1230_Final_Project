@@ -48,6 +48,8 @@ add_executable(${PROJECT_NAME}
     src/ParticleSystem/hello_world.cpp
     src/ParticleSystem/ParticleManager.h
     src/ParticleSystem/ParticleManager.cpp
+    src/ParticleSystem/particle.cl
+    src/ParticleSystem/hello_world.cl
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`

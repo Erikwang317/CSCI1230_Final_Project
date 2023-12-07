@@ -13,7 +13,7 @@ double generateGaussianNoise() {
 
 ParticleManager::ParticleManager(int number): m_num_of_particles(number) {
     if (number > 0){
-        m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));
+        m_particle_position.resize(m_num_of_particles * 4, glm::vec4(0.0f));// modified to draw triangles
         m_particle_velocity.resize(m_num_of_particles, glm::vec4(0.0f));
         m_particle_life.resize(m_num_of_particles, -1.0f);
         m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
@@ -34,7 +34,7 @@ void ParticleManager::changeNumParticles(int new_number) {
 
     m_num_of_particles = new_number;
 
-    m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));
+    m_particle_position.resize(m_num_of_particles * 4, glm::vec4(0.0f));// modified to draw triangles
     m_particle_velocity.resize(m_num_of_particles, glm::vec4(0.0f));
     m_particle_life.resize(m_num_of_particles, -1.0f);
     m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
@@ -59,15 +59,26 @@ void ParticleManager::configureVAO(){
 
     glGenBuffers(1, &m_posVBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* 4 *sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
 
     glGenBuffers(1, &m_lifeVBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(float), NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* sizeof(float), NULL, GL_DYNAMIC_DRAW);
     glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(1);
+
+//    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+//    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+//    glEnableVertexAttribArray(0);
+
+
+//    glBindBuffer(GL_ARRAY_BUFFER, instanceSizeVBO);
+//    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, (void*)0);
+//    glEnableVertexAttribArray(2);
+//    glVertexAttribDivisor(2, 1);
+
 
     glBindVertexArray(0);
 }
@@ -81,13 +92,13 @@ void ParticleManager::bindAndUpdateBuffers(){
 
     // Send (updated) pos data to the GPU, pos => vertex
     glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(glm::vec4), &m_particle_position[0]);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* 4 *sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles* 4 *sizeof(glm::vec4), &m_particle_position[0]);
 
     // Send (updated) life data to the GPU, life => color
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(float), NULL, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(float), &m_particle_life[0]);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* 4 *sizeof(float), NULL, GL_DYNAMIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles* 4 *sizeof(float), &m_particle_life[0]);
 }
 
 
@@ -97,19 +108,45 @@ void ParticleManager::initializeCL(){
 }
 
 
-void ParticleManager::create(int id){
-    m_particle_randVelOffset[id].x = 0.5*generateGaussianNoise(); //RAND
-    m_particle_randVelOffset[id].y = 0.5*generateGaussianNoise(); //RAND
-    m_particle_randVelOffset[id].z = 0.5*generateGaussianNoise(); //RAND
-    m_particle_randVelOffset[id].w = 0;
+//void ParticleManager::create(int id){
+//    m_particle_randVelOffset[id].x = 0.5*generateGaussianNoise(); //RAND
+//    m_particle_randVelOffset[id].y = 0.5*generateGaussianNoise(); //RAND
+//    m_particle_randVelOffset[id].z = 0.5*generateGaussianNoise(); //RAND
+//    m_particle_randVelOffset[id].w = 0;
 
+//    m_particle_life[id] = m_max_life;
+//    m_particle_position[id] = m_emit_pos;
+//    m_particle_velocity[id] = glm::vec4(0.0f, 7.0f, 0.0f, 0.0f)+m_particle_randVelOffset[id];
+//}
+
+void ParticleManager::create(int id){
+    int vertex_id = id * 4;
+    float size = 0.5f;
+
+    // Define the two triangles in CCW order
+    glm::vec3 center = glm::vec3(m_emit_pos);
+    glm::vec3 vertices[4] = {
+        center + glm::vec3(-size, -size, 0.0f), // Bottom Left
+        center + glm::vec3(size, -size, 0.0f),  // Bottom Right
+        center + glm::vec3(-size, size, 0.0f),  // Top Left
+        center + glm::vec3(size, size, 0.0f),   // Top Right
+    };
+
+    // Update the particle's position buffer with the six new vertices
+    for (int i = 0; i < 4; ++i) {
+        m_particle_position[vertex_id + i] = glm::vec4(vertices[i], 1.f);
+    }
+
+    m_particle_randVelOffset[id] = glm::vec4(0.5 * generateGaussianNoise(), // RAND
+                                             0.5 * generateGaussianNoise(), // RAND
+                                             0.5 * generateGaussianNoise(), // RAND
+                                             0.0f);
     m_particle_life[id] = m_max_life;
-    m_particle_position[id] = m_emit_pos;
-    m_particle_velocity[id] = glm::vec4(0.0f, 7.0f, 0.0f, 0.0f)+m_particle_randVelOffset[id];
+    m_particle_velocity[id] = glm::vec4(0.0f, 7.0f, 0.0f, 0.0f) + m_particle_randVelOffset[id];
 }
 
 
-void ParticleManager::render(const glm::mat4 &ViewProjection){
+void ParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight){
     if (m_num_of_particles == 0) return;
 
     // bind VAO and update local vector data to VBO
@@ -117,10 +154,19 @@ void ParticleManager::render(const glm::mat4 &ViewProjection){
     bindAndUpdateBuffers();
 
     glUniformMatrix4fv(glGetUniformLocation(m_shader, "u_ViewProjection"), 1, GL_FALSE, &ViewProjection[0][0]);
+
+    //glm::vec3 worldUp(0.f, 1.f, 0.f);
+
+    glUniform3fv(glGetUniformLocation(m_shader, "u_cameraRight"), 1, &cameraRight[0]);
+
     glUniform4fv(glGetUniformLocation(m_shader, "u_bornColor"), 1, &m_bornColor[0]);
     glUniform4fv(glGetUniformLocation(m_shader, "u_deadColor"), 1, &m_deadColor[0]);
     glUniform1f(glGetUniformLocation(m_shader, "u_max_life"), m_max_life);
-    glDrawArrays(GL_POINTS, 0, m_num_of_particles);
+    //glDrawArrays(GL_POINTS, 0, m_num_of_particles);
+
+    //glDrawArrays(GL_TRIANGLES, 0, m_num_of_particles * 4); //draw triagnles
+
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4*m_num_of_particles, m_num_of_particles);
 
     // Unbind VAO
     glBindVertexArray(0);
@@ -263,6 +309,8 @@ void ParticleManager::setupKernel(){
     std::filesystem::path absolutePath = std::filesystem::absolute(relativePath);
     size_t source_size;
     char* source_str;
+//    std::cout << "absolutePath==============" << absolutePath << std::endl;
+//    std::cout << "RelativePath==============" << relativePath << std::endl;
 
     FILE *fp;
     fp = fopen(absolutePath.c_str(), "rb");

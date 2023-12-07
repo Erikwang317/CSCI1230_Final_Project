@@ -1,0 +1,2 @@
+/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_iOS_Simulator/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_59463.dir
+/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_iOS_Simulator/CMakeFiles/CMakeTmp/CMakeFiles/ALL_BUILD.dir

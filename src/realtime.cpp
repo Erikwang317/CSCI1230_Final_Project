@@ -75,7 +75,9 @@ void Realtime::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glm::mat4 camViewProjection = m_camera.getProjectionMatrix()*m_camera.getViewMatrix();
-    m_ParticleManager.render(camViewProjection);
+    glm::vec3 right = glm::cross(m_camera.getLook(), m_camera.getUp());
+
+    m_ParticleManager.render(camViewProjection, right);
 }
 
 void Realtime::resizeGL(int w, int h) {

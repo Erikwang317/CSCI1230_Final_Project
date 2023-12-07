@@ -7,6 +7,7 @@ __kernel void particle(__global float4* position_list,
 {
     int i = get_global_id(0);
     // float3 is an alias for float4, why are you such a dick OpenCL?
+    // hahaha
 
     if (life_list[i] > 0.0f){
         velocity_list[i].y = velocity_list[i].y - 10.0f * dt;
