@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <random>
 #include "utils/shaderloader.h"
+#include <QImage>
 
 //#include "utils/shaderloader.h"
 
@@ -99,6 +100,8 @@ private:
     GLuint m_posVBO;
     GLuint m_lifeVBO;
     GLuint m_shader;
+    GLuint m_texture;
+    QImage m_image;
     // Gluint m_indicesVBO; // quad
     // GLuint m_transformationsVBO; // quad
     // GLuint m_rotationsVBO; // quad
@@ -116,6 +119,7 @@ private:
     void configureVAO();
     void configureShaderProgram();
     void bindAndUpdateBuffers();
+    void configureTexture();
 
     void initializeCL();
     void setupCL();

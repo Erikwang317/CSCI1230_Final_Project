@@ -5,6 +5,7 @@ StaticGLEW_autogen/timestamp: \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/CMakeFiles/3.24.2/CMakeCXXCompiler.cmake \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/CMakeFiles/3.24.2/CMakeSystem.cmake \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glew/src/glew.c \
+	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources.qrc \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/camera.cpp \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/camera.h \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/shapes/cone.cpp \

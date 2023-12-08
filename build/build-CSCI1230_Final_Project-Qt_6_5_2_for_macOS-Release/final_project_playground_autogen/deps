@@ -953,6 +953,7 @@ final_project_playground_autogen/timestamp: \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glm/vec3.hpp \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glm/vec4.hpp \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/glm/vector_relational.hpp \
+	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources.qrc \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/QuadParticleManager.cpp \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/QuadParticleManager.h \
 	/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/hello_world.cpp \
@@ -1094,6 +1095,7 @@ final_project_playground_autogen/timestamp: \
 	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h \
 	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h \
 	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
+	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/QImage \
 	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/QSurfaceFormat \
 	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/qaction.h \
 	/Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/qbitmap.h \

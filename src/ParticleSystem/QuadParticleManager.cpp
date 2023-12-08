@@ -37,6 +37,7 @@ void QuadParticleManager::changeNumParticles(int new_number) {
     m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
 
     configureVAO();
+    configureTexture();//
     initializeCL();
 }
 
@@ -96,6 +97,38 @@ void QuadParticleManager::bindAndUpdateBuffers(){
     glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(float), &m_particle_life[0]);
 }
 
+void QuadParticleManager::configureTexture() {
+    //QString kitten_filepath = QString("../lab11-textures-FBOs-Erikwang317/resources/images/kitten.png");
+    QString kitten_filepath = QString(":/resources/images/snowflakes.png");
+    if (!m_image.load(kitten_filepath)) {
+        std::cerr << "Failed to load texture from: " << kitten_filepath.toStdString() << std::endl;
+        return;
+    }
+
+    m_image = m_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
+    glGenTextures(1, &m_texture);
+    glBindTexture(GL_TEXTURE_2D, m_texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image.width(), m_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image.bits());
+
+    // Set the texture wrapping/filtering options (on the currently bound texture object)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+//    int width, height, nrChannels;
+//    unsigned char *data = stbi_load("path/to/texture.jpg", &width, &height, &nrChannels, 0);
+//    if (data) {
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+//        glGenerateMipmap(GL_TEXTURE_2D);
+//    } else {
+//        std::cout << "Failed to load texture" << std::endl;
+//    }
+//    stbi_image_free(data);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 
 void QuadParticleManager::initializeCL(){
     setupCL();
@@ -121,6 +154,10 @@ void QuadParticleManager::create(int id){
 void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight){
     if (m_num_of_particles == 0) return;
 
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_texture);
+    glUniform1i(glGetUniformLocation(m_shader, "u_texture"), 0);
+
     // bind VAO and update local vector data to VBO
     glUseProgram(m_shader);
     bindAndUpdateBuffers();
@@ -138,7 +175,7 @@ void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec
 
     //glDrawArrays(GL_TRIANGLES, 0, m_num_of_particles); //draw triagnles
 
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 40, m_num_of_particles);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 6, m_num_of_particles);
 
     // Unbind VAO
     glBindVertexArray(0);

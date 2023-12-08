@@ -50,6 +50,8 @@ add_executable(${PROJECT_NAME}
     src/ParticleSystem/QuadParticleManager.cpp
     src/ParticleSystem/particle.cl
     src/ParticleSystem/hello_world.cl
+    resources.qrc
+
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`

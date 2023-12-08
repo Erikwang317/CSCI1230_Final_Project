@@ -439,7 +439,8 @@
 		"/Users/wangbing000317/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakePushCheckState.cmake",
 		"/Users/wangbing000317/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake",
 		"/Users/wangbing000317/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/FindPackageMessage.cmake",
-		"/Users/wangbing000317/Qt/6.5.2/macos/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
+		"/Users/wangbing000317/Qt/6.5.2/macos/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project",
 	"DEP_FILE" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/deps",
@@ -525,6 +526,7 @@
 	"MOC_SKIP" : 
 	[
 		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/EWIEGA46WW/qrc_resources.cpp",
 		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/mocs_compilation.cpp"
 	],
 	"MULTI_CONFIG" : false,
@@ -573,6 +575,7 @@
 	"UIC_SKIP" : 
 	[
 		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/.rcc/qrc_Resources.cpp",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/EWIEGA46WW/qrc_resources.cpp",
 		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/final_project_playground_autogen/mocs_compilation.cpp"
 	],
 	"UIC_UI_FILES" : [],

@@ -1077,6 +1077,7 @@
   /Users/wangbing000317/Qt/6.5.2/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h \
   /Users/wangbing000317/Qt/6.5.2/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h \
   /Users/wangbing000317/Qt/6.5.2/macos/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
+  /Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/QImage \
   /Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/QSurfaceFormat \
   /Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/qaction.h \
   /Users/wangbing000317/Qt/6.5.2/macos/lib/QtGui.framework/Versions/A/Headers/qbitmap.h \
