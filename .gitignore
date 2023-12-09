@@ -1,0 +1,58 @@
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.out
+*.so
+
+# Temporary files
+*.swp
+*.swo
+*~
+*.log
+
+# OS or Editor folders
+.vscode/
+.idea/
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Build files
+build/
+dist/
+out/
+
+# Local development files
+.env
+.env.local
+.env.*.local
+
+# Log files
+*.log
+log/
+logs/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# User-specific files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
