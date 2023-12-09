@@ -5,6 +5,7 @@
 
 struct Settings {
     std::string sceneFilePath;
+    std::string textureFilePath; //= ":/resources/images/snowflakes.png";
     int shapeParameter1 = 1;
     int shapeParameter2 = 1;
     float nearPlane = 1;

@@ -71,12 +71,16 @@ float Camera::getHeightAngle() const {
     return m_height_angle;
 }
 
-glm::vec3 Camera::getLook() {
+glm::vec3 Camera::getLook() const{
     return glm::vec3(m_look);
 }
 
-glm::vec3 Camera::getUp() {
+glm::vec3 Camera::getUp() const{
     return glm::vec3(m_up);
+}
+
+float Camera::getAspectRatio() const{
+    return m_aspect_ratio;
 }
 
 void Camera::moveCameraW(float deltaTime) {

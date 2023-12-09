@@ -38,6 +38,7 @@ void QuadParticleManager::changeNumParticles(int new_number) {
 
     configureVAO();
     configureTexture();//
+    enableGLBlend();
     initializeCL();
 }
 
@@ -98,12 +99,16 @@ void QuadParticleManager::bindAndUpdateBuffers(){
 }
 
 void QuadParticleManager::configureTexture() {
+    m_texture_initalized = true;
     //QString kitten_filepath = QString("../lab11-textures-FBOs-Erikwang317/resources/images/kitten.png");
-    QString kitten_filepath = QString(":/resources/images/snowflakes.png");
-    if (!m_image.load(kitten_filepath)) {
-        std::cerr << "Failed to load texture from: " << kitten_filepath.toStdString() << std::endl;
+    //QString kitten_filepath = QString(":/resources/images/snowflakes.png");
+    QString texture_filepath = QString::fromStdString(settings.textureFilePath);
+    //std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
+    if (!m_image.load(texture_filepath)) {
+        std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
         return;
     }
+    std::cout << settings.textureFilePath << std::endl;
 
     m_image = m_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
     glGenTextures(1, &m_texture);
@@ -129,6 +134,48 @@ void QuadParticleManager::configureTexture() {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+void QuadParticleManager::updateTexture() {
+    //std::cout << "1111111111111" << std::endl;
+    if(!m_texture_initalized) return;
+    //    if(m_texture_initalized){
+    //        glDeleteTextures(1, &m_texture);
+    //        GLenum err = glGetError();
+    //        if (err != GL_NO_ERROR) {
+    //            std::cerr << "OpenGL error: " << gluErrorString(err) << std::endl;
+    //        }
+    //        m_texture = 0;
+    //        QImage().swap(m_image);
+    //    } else {
+    //        m_texture_initalized = true;
+    //    }
+    QImage image;
+    QString texture_filepath = QString::fromStdString(settings.textureFilePath);
+    if (!image.load(texture_filepath)) {
+        std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
+        return;
+    }
+    image = image.convertToFormat(QImage::Format_RGBA8888).mirrored();
+
+    glBindTexture(GL_TEXTURE_2D, m_texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
+
+    // Update texture settings if necessary
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    update();
+
+}
+
+
+void QuadParticleManager::enableGLBlend() {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
 
 void QuadParticleManager::initializeCL(){
     setupCL();
@@ -151,7 +198,7 @@ void QuadParticleManager::create(int id){
 }
 
 
-void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight){
+void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight, float aspectRatio){
     if (m_num_of_particles == 0) return;
 
     glActiveTexture(GL_TEXTURE0);
@@ -163,6 +210,7 @@ void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec
     bindAndUpdateBuffers();
 
     glUniformMatrix4fv(glGetUniformLocation(m_shader, "u_ViewProjection"), 1, GL_FALSE, &ViewProjection[0][0]);
+    glUniform1f(glGetUniformLocation(m_shader, "u_aspectRatio"), aspectRatio);
 
     //glm::vec3 worldUp(0.f, 1.f, 0.f);
 
@@ -183,7 +231,7 @@ void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec
 }
 
 
-void QuadParticleManager::update(float dt) {
+void QuadParticleManager::updateParticles(float dt) {
     // slowly increase the number of its particles to the max amount instead of shooting all at once
     if (m_active_particles < m_num_of_particles) {
         int batch = 10;
@@ -333,7 +381,7 @@ void QuadParticleManager::setupKernel(){
     source_str = (char*)malloc(MAX_SOURCE_SIZE);
     source_size = fread( source_str, 1, MAX_SOURCE_SIZE, fp);
     fclose( fp );
-    std::cout << source_str << std::endl;
+    //std::cout << source_str << std::endl;
 
     m_clprogram = clCreateProgramWithSource(m_clcontext, 1, (const char **)&source_str, (const size_t *)&source_size, &error);
     checkError("clCreateProgramWithSource()", error);
@@ -454,6 +502,8 @@ QuadParticleManager::~QuadParticleManager() {
     glDeleteBuffers(1, &m_posVBO);
     glDeleteBuffers(1, &m_lifeVBO);
     glDeleteVertexArrays(1, &m_VAO);
+    glDeleteTextures(1, &m_texture);
+    m_texture = 0;
 }
 
 

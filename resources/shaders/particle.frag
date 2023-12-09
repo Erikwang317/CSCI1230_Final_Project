@@ -19,12 +19,13 @@ void main()
 
     float blendFactor = 1;
     fragColor = mix(particleColor, textureColor, blendFactor);
+    //fragColor = particleColor;
+    float r = clamp(out_position.x, 0.f, 1.f);
+    float g = clamp(out_position.z, 0.f, 1.f);
+    float b = clamp(out_position.y, 0.f, 1.f);
 
-    float r = clamp(out_position.x,0.0f,1.0f);
-    float g = clamp(out_position.z,0.0f,1.0f);
-    float b = clamp(out_position.y,0.0f,1.0f);
-
-    fragColor = fragColor + 0.5*vec4(r,g,b,1.0f);
+    fragColor = fragColor + 0.5*vec4(r,g,b,1.f);
+    fragColor.a = 0.f;
 
 //    fragColor = vec4(1.0f,1.0f,1.0f,1.0f);
 }

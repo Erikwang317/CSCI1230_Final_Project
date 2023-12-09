@@ -1798,6 +1798,7 @@
  mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/ParticleSystem/QuadParticleManager.h
  mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/camera.h
  mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/realtime.h
+ mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/settings.h
  mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/utils/aspectratiowidget/aspectratiowidget.hpp
  mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/utils/scenedata.h
  mdp:/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/src/utils/sceneparser.h

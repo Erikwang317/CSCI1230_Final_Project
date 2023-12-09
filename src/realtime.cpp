@@ -74,8 +74,9 @@ void Realtime::paintGL() {
 
     glm::mat4 camViewProjection = m_camera.getProjectionMatrix()*m_camera.getViewMatrix();
     glm::vec3 right = glm::cross(m_camera.getLook(), m_camera.getUp());
+    float aspectRatio = m_camera.getAspectRatio();
 
-    m_QuadParticleManager.render(camViewProjection, right);
+    m_QuadParticleManager.render(camViewProjection, right, aspectRatio);
 }
 
 void Realtime::resizeGL(int w, int h) {
@@ -184,7 +185,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     }
 
     if (m_is_init){
-        m_QuadParticleManager.update(0.01*deltaTime);
+        m_QuadParticleManager.updateParticles(0.01*deltaTime);
     }
 
     update(); // asks for a PaintGL() call to occur

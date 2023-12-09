@@ -40,8 +40,10 @@ public:
     glm::mat4 getProjectionMatrix() const;
     glm::vec4 getPosWorldSpace() const;
 
-    glm::vec3 getLook();
-    glm::vec3 getUp();
+    glm::vec3 getLook() const;
+    glm::vec3 getUp() const;
+
+    float getAspectRatio() const;
     // Returns the height angle of the camera in RADIANS.
     float getHeightAngle() const;
 
