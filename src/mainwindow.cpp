@@ -60,6 +60,9 @@ void MainWindow::initialize() {
     // Create file uploader for scene file
     uploadFile = new QPushButton();
     uploadFile->setText(QStringLiteral("Upload Scene File"));
+
+    uploadTextureFile = new QPushButton();
+    uploadTextureFile->setText(QStringLiteral("Upload Texture File"));
     
     saveImage = new QPushButton();
     saveImage->setText(QStringLiteral("Save image"));
@@ -162,6 +165,7 @@ void MainWindow::initialize() {
     ec4->setChecked(false);
 
     vLayout->addWidget(uploadFile);
+    vLayout->addWidget(uploadTextureFile);
     vLayout->addWidget(saveImage);
     vLayout->addWidget(tesselation_label);
     vLayout->addWidget(param1_label);
@@ -203,6 +207,7 @@ void MainWindow::connectUIElements() {
     connectPerPixelFilter();
     connectKernelBasedFilter();
     connectUploadFile();
+    connectUploadTextureFile();
     connectSaveImage();
     connectParam1();
     connectParam2();
@@ -221,6 +226,10 @@ void MainWindow::connectKernelBasedFilter() {
 
 void MainWindow::connectUploadFile() {
     connect(uploadFile, &QPushButton::clicked, this, &MainWindow::onUploadFile);
+}
+
+void MainWindow::connectUploadTextureFile() {
+    connect(uploadTextureFile, &QPushButton::clicked, this, &MainWindow::onUploadTextureFile);
 }
 
 void MainWindow::connectSaveImage() {
@@ -288,6 +297,29 @@ void MainWindow::onUploadFile() {
     std::cout << "Loaded scenefile: \"" << configFilePath.toStdString() << "\"." << std::endl;
 
     realtime->sceneChanged();
+}
+
+void MainWindow::onUploadTextureFile() {
+    // Get abs path of texture file
+    //std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+    QString configFilePath = QFileDialog::getOpenFileName(this, tr("Upload Texture File"),
+                                                          QDir::currentPath()
+                                                              .append(QDir::separator())
+                                                              .append("resources")
+                                                              .append(QDir::separator())
+                                                              .append("images"), tr("Scene Files (*.png)"));
+    if (configFilePath.isNull()) {
+        std::cout << "Failed to load null texture file." << std::endl;
+        return;
+    }
+
+    settings.textureFilePath = configFilePath.toStdString();
+    //std::cout << "=================="<< configFilePath.toStdString() << std::endl;
+
+    std::cout << "Loaded texture file: \"" << configFilePath.toStdString() << "\"." << std::endl;
+
+    //emit textureFileChanged(configFilePath);
+    quadParticleManager->updateTexture();
 }
 
 void MainWindow::onSaveImage() {

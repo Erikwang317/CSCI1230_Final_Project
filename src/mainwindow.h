@@ -7,6 +7,7 @@
 #include <QDoubleSpinBox>
 #include <QPushButton>
 #include "realtime.h"
+#include "QuadParticleManager.h"
 #include "utils/aspectratiowidget/aspectratiowidget.hpp"
 
 class MainWindow : public QWidget
@@ -17,6 +18,9 @@ public:
     void initialize();
     void finish();
 
+signals:
+    void textureFileChanged(const QString &filePath);
+
 private:
     void connectUIElements();
     void connectParam1();
@@ -26,14 +30,17 @@ private:
     void connectPerPixelFilter();
     void connectKernelBasedFilter();
     void connectUploadFile();
+    void connectUploadTextureFile();
     void connectSaveImage();
     void connectExtraCredit();
 
     Realtime *realtime;
+    QuadParticleManager *quadParticleManager;
     AspectRatioWidget *aspectRatioWidget;
     QCheckBox *filter1;
     QCheckBox *filter2;
     QPushButton *uploadFile;
+    QPushButton *uploadTextureFile;
     QPushButton *saveImage;
     QSlider *p1Slider;
     QSlider *p2Slider;
@@ -54,6 +61,7 @@ private slots:
     void onPerPixelFilter();
     void onKernelBasedFilter();
     void onUploadFile();
+    void onUploadTextureFile();
     void onSaveImage();
     void onValChangeP1(int newValue);
     void onValChangeP2(int newValue);

@@ -66,8 +66,21 @@ glm::mat4 Camera::getProjectionMatrix() const {
 glm::vec4 Camera::getPosWorldSpace() const {
     return m_pos_world_space;
 }
+
 float Camera::getHeightAngle() const {
     return m_height_angle;
+}
+
+glm::vec3 Camera::getLook() const{
+    return glm::vec3(m_look);
+}
+
+glm::vec3 Camera::getUp() const{
+    return glm::vec3(m_up);
+}
+
+float Camera::getAspectRatio() const{
+    return m_aspect_ratio;
 }
 
 void Camera::moveCameraW(float deltaTime) {
@@ -126,4 +139,6 @@ void Camera::moveCameraMouseY(float deltaY) {
     m_look = glm::vec4(rotation*glm::vec3(m_look),1);
     _setViewMatrix();
 }
+
+
 

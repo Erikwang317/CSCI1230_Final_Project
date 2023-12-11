@@ -46,8 +46,12 @@ add_executable(${PROJECT_NAME}
 
     src/ParticleSystem/hello_world.h
     src/ParticleSystem/hello_world.cpp
-    src/ParticleSystem/ParticleManager.h
-    src/ParticleSystem/ParticleManager.cpp
+    src/ParticleSystem/QuadParticleManager.h
+    src/ParticleSystem/QuadParticleManager.cpp
+    src/ParticleSystem/particle.cl
+    src/ParticleSystem/hello_world.cl
+    resources.qrc
+
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
@@ -106,6 +110,9 @@ if (MSVC OR MSYS OR MINGW)
   set(CMAKE_CXX_FLAGS "-Wno-volatile")
 endif()
 # Set this flag to silence warnings on MacOS
+#if (APPLE)
+#  set(CMAKE_CXX_FLAGS "-Wno-deprecated-volatile")
+#endif()
 if (APPLE)
-  set(CMAKE_CXX_FLAGS "-Wno-deprecated-volatile")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
 endif()

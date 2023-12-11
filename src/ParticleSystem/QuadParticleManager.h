@@ -10,6 +10,9 @@
 #include <algorithm>
 #include <random>
 #include "utils/shaderloader.h"
+#include <QImage>
+#include <QOpenGLWidget>
+#include "settings.h"
 
 //#include "utils/shaderloader.h"
 
@@ -43,18 +46,33 @@
 //    }
 //};
 
+//struct Particle{
+//    glm::vec3 pos, speed;
+//    unsigned char r,g,b,a;
+//    float size, angle, weight;
+//    float life;
+//    float cameradistance;
+//    bool operator<(Particle& that){
+//        return this->cameradistance > that.cameradistance;
+//    }
+
+//};
 
 
 /* Basic fountain particle effect
  * Emits from origin, shoots up with random initial velocity, drop off the screen, then respawn
  * This is a point particle system. Implement quad particle system later
 */
-class ParticleManager{
+class QuadParticleManager: public QOpenGLWidget {
 
 public:
     int m_active_particles = 0;
     int m_num_of_particles;
     float m_max_life = 1.2f;
+    std::string textureFilePath;
+    bool m_texture_initalized = false;
+//    int MaxParticles = 100000;
+//    Particle ParticlesContainer[MaxParticles];
 
     /* Particle attributes, maintained via OpenCL */
     std::vector<float> m_particle_life;
@@ -68,12 +86,13 @@ public:
     // std::vector<float> m_scales; // quad
 
     /* ParticleManager member functions for init + render + update */
-    ParticleManager(int number=0);
-    ~ParticleManager();
+    QuadParticleManager(int number=0);
+    ~QuadParticleManager();
     void changeNumParticles(int new_number);
-    void render(const glm::mat4 &ViewProjection);
-    void update(float dt);
+    void render(const glm::mat4 &ViewProjection, const glm::vec3 &right, float aspectRatio);
+    void updateParticles(float dt);
     void create(int id);
+    void updateTexture();
     // glm::vec4 calculateBillboardRotationMatrix(glm::vec3 particle_pos, glm::vec3 camera_pos); // quad
 
 private:
@@ -86,6 +105,8 @@ private:
     GLuint m_posVBO;
     GLuint m_lifeVBO;
     GLuint m_shader;
+    GLuint m_texture;
+    QImage m_image;
     // Gluint m_indicesVBO; // quad
     // GLuint m_transformationsVBO; // quad
     // GLuint m_rotationsVBO; // quad
@@ -103,6 +124,8 @@ private:
     void configureVAO();
     void configureShaderProgram();
     void bindAndUpdateBuffers();
+    void configureTexture();
+    void enableGLBlend();
 
     void initializeCL();
     void setupCL();

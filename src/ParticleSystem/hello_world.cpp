@@ -69,6 +69,8 @@ void hello_world(){
 
     std::filesystem::path relativePath = "src/ParticleSystem/hello_world.cl";
     std::filesystem::path absolutePath = std::filesystem::absolute(relativePath);
+//    std::cout << "================================" << std::endl;
+//    std::cout << "RelativePath==============" << relativePath << std::endl;
 
     fp = fopen(absolutePath.c_str(), "r");
     if (!fp) {
