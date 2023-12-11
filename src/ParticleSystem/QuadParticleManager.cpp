@@ -245,14 +245,17 @@ void QuadParticleManager::updateParticles(float dt, glm::vec4 cursor_pos) {
                 m_active_particles++;
             }
         }
-
-        // cursor pressed down, -> update emission position
+        // cursor pressed down, -> drift the emission position too
         else{
-            m_emit_pos += 0.001f*(glm::vec3(cursor_pos),0.0f)*dt;
+            //m_emit_pos = m_emit_pos + 0.00005f*glm::vec4(glm::vec3(cursor_pos),0.0f);
         }
 
     }
     else {
+        // cursor pressed down, -> drift the emission position too
+        if (cursor_pos.w != -1.0f){
+            //m_emit_pos = m_emit_pos + 0.00005f*glm::vec4(glm::vec3(cursor_pos),0.0f);
+        }
         m_active_particles = m_num_of_particles; // in case resized to a smaller particle number
     }
     setupBuffer();

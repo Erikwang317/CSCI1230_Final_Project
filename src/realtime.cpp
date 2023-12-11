@@ -163,6 +163,7 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
         float cursor_x = posX-size().width()/2;
         float cursor_y = -(posY-size().height()/2);
         glm::vec4 cursor_pos = glm::vec4(cursor_x, cursor_y, 0.0f, 1.0f);
+        std::cout << cursor_x << " " << cursor_y << std::endl;
         m_QuadParticleManager.updateParticles(0.01*deltaTime, cursor_pos);
 
         update(); // asks for a PaintGL() call to occur

@@ -99,7 +99,7 @@ private:
     bool m_init = false;
     glm::vec4 m_emit_pos;
     glm::vec4 m_init_vel = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-    glm::vec4 m_bornColor = glm::vec4(1.0f, 0.1f, 0.1f, 1.0f);
+    glm::vec4 m_bornColor = glm::vec4(1.0f, 0.1f, 0.0f, 1.0f);
     glm::vec4 m_deadColor = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
 
     GLuint m_VAO;
