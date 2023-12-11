@@ -144,6 +144,10 @@ void Realtime::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void Realtime::mouseMoveEvent(QMouseEvent *event) {
+    int elapsedms   = m_elapsedTimer.elapsed();
+    float deltaTime = elapsedms * 0.1f;
+    m_elapsedTimer.restart();
+
     if (m_mouseDown) {
         int posX = event->position().x();
         int posY = event->position().y();
@@ -152,8 +156,14 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
         m_prev_mouse_pos = glm::vec2(posX, posY);
 
         // Use deltaX and deltaY here to rotate
-        m_camera.moveCameraMouseX(deltaX*0.005f);
-        m_camera.moveCameraMouseY(deltaY*0.005f);
+//        m_camera.moveCameraMouseX(deltaX*0.005f);
+//        m_camera.moveCameraMouseY(deltaY*0.005f);
+
+        // invert the y because of the camera's position
+        float cursor_x = posX-size().width()/2;
+        float cursor_y = -(posY-size().height()/2);
+        glm::vec4 cursor_pos = glm::vec4(cursor_x, cursor_y, 0.0f, 1.0f);
+        m_QuadParticleManager.updateParticles(0.01*deltaTime, cursor_pos);
 
         update(); // asks for a PaintGL() call to occur
     }

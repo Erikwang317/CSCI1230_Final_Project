@@ -186,15 +186,16 @@ void QuadParticleManager::create(int id){
 
     // Define the two triangles in CCW order
     glm::vec3 center = glm::vec3(m_emit_pos);
+    glm::vec4 init_vel = m_init_vel;
 
     m_particle_position[id] = glm::vec4(center, 1.f);
 
-    m_particle_randVelOffset[id] = glm::vec4(0.5 * generateGaussianNoise(), // RAND
-                                             0.5 * generateGaussianNoise(), // RAND
-                                             0.5 * generateGaussianNoise(), // RAND
+    m_particle_randVelOffset[id] = glm::vec4(0.1f * generateGaussianNoise(), // RAND
+                                             0.1f * generateGaussianNoise(), // RAND
+                                             0.1f * generateGaussianNoise(), // RAND
                                              0.0f);
     m_particle_life[id] = m_max_life;
-    m_particle_velocity[id] = glm::vec4(0.0f, 7.0f, 0.0f, 0.0f) + m_particle_randVelOffset[id];
+    m_particle_velocity[id] = m_init_vel + m_particle_randVelOffset[id];
 }
 
 
@@ -231,16 +232,25 @@ void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec
 }
 
 
-void QuadParticleManager::updateParticles(float dt) {
+void QuadParticleManager::updateParticles(float dt, glm::vec4 cursor_pos) {
     // slowly increase the number of its particles to the max amount instead of shooting all at once
     if (m_active_particles < m_num_of_particles) {
         int batch = 10;
         int limit = std::min(m_num_of_particles - m_active_particles, batch);
 
-        for (int i = 0; i < limit; i++) {
-            create(m_active_particles);
-            m_active_particles++;
+        // cursor not pressed down, -> no field force
+        if (cursor_pos.w == -1.0f){
+            for (int i = 0; i < limit; i++) {
+                create(m_active_particles);
+                m_active_particles++;
+            }
         }
+
+        // cursor pressed down, -> update emission position
+        else{
+            m_emit_pos += 0.001f*(glm::vec3(cursor_pos),0.0f)*dt;
+        }
+
     }
     else {
         m_active_particles = m_num_of_particles; // in case resized to a smaller particle number
@@ -255,7 +265,10 @@ void QuadParticleManager::updateParticles(float dt) {
     clSetKernelArg(m_clkernel, 1, sizeof(cl_mem), &m_clvelocityBuffer);
     clSetKernelArg(m_clkernel, 2, sizeof(cl_mem), &m_clrandVelOffsetBuffer);
     clSetKernelArg(m_clkernel, 3, sizeof(cl_mem), &m_cllifeBuffer);
-    clSetKernelArg(m_clkernel, 4, sizeof(float), &dt);
+    clSetKernelArg(m_clkernel, 4, sizeof(glm::vec4), &m_init_vel[0]);
+    clSetKernelArg(m_clkernel, 5, sizeof(glm::vec4), &cursor_pos[0]);
+    clSetKernelArg(m_clkernel, 6, sizeof(glm::vec4), &m_emit_pos[0]);
+    clSetKernelArg(m_clkernel, 7, sizeof(float), &dt);
 
     size_t workSize[1] = { (size_t)(m_num_of_particles) };
     error = clEnqueueNDRangeKernel(m_clcommandQueue,					// our command queue

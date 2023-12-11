@@ -90,7 +90,7 @@ public:
     ~QuadParticleManager();
     void changeNumParticles(int new_number);
     void render(const glm::mat4 &ViewProjection, const glm::vec3 &right, float aspectRatio);
-    void updateParticles(float dt);
+    void updateParticles(float dt, glm::vec4 cursor_pos = glm::vec4(0.0f, 0.0f, 0.0f, -1.0f));
     void create(int id);
     void updateTexture();
     // glm::vec4 calculateBillboardRotationMatrix(glm::vec3 particle_pos, glm::vec3 camera_pos); // quad
@@ -98,8 +98,9 @@ public:
 private:
     bool m_init = false;
     glm::vec4 m_emit_pos;
-    glm::vec4 m_bornColor = glm::vec4(0.0f, 0.1f, 0.1f, 1.0f);
-    glm::vec4 m_deadColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    glm::vec4 m_init_vel = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+    glm::vec4 m_bornColor = glm::vec4(1.0f, 0.1f, 0.1f, 1.0f);
+    glm::vec4 m_deadColor = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
 
     GLuint m_VAO;
     GLuint m_posVBO;
