@@ -318,8 +318,7 @@ void MainWindow::onUploadTextureFile() {
 
     std::cout << "Loaded texture file: \"" << configFilePath.toStdString() << "\"." << std::endl;
 
-    //emit textureFileChanged(configFilePath);
-    quadParticleManager->updateTexture();
+
 }
 
 void MainWindow::onSaveImage() {

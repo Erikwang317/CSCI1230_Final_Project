@@ -46,8 +46,10 @@ add_executable(${PROJECT_NAME}
 
     src/ParticleSystem/hello_world.h
     src/ParticleSystem/hello_world.cpp
-    src/ParticleSystem/QuadParticleManager.h
-    src/ParticleSystem/QuadParticleManager.cpp
+
+
+    src/ParticleSystem/PointParticleManager.h
+    src/ParticleSystem/PointParticleManager.cpp
     src/ParticleSystem/particle.cl
     src/ParticleSystem/hello_world.cl
     resources.qrc
@@ -94,6 +96,8 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/texture.vert
         resources/shaders/particle.vert
         resources/shaders/particle.frag
+        resources/shaders/pointparticle.vert
+        resources/shaders/pointparticle.frag
 )
 
 # GLEW: this provides support for Windows (including 64-bit)

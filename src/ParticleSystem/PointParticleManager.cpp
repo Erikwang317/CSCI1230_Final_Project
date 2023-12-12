@@ -1,6 +1,7 @@
-#include "QuadParticleManager.h"
+#include "PointParticleManager.h"
 #include <cstdlib>
 #include <fstream>
+
 
 double generateGaussianNoise() {
     std::random_device rd;
@@ -9,9 +10,10 @@ double generateGaussianNoise() {
     return distribution(gen);
 }
 
-QuadParticleManager::QuadParticleManager(int number): m_num_of_particles(number) {
+
+PointParticleManager::PointParticleManager(int number): m_num_of_particles(number) {
     if (number > 0){
-        m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));// modified to draw triangles
+        m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));
         m_particle_velocity.resize(m_num_of_particles, glm::vec4(0.0f));
         m_particle_life.resize(m_num_of_particles, -1.0f);
         m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
@@ -19,9 +21,10 @@ QuadParticleManager::QuadParticleManager(int number): m_num_of_particles(number)
     m_emit_pos = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
+
 /* Change particle number, reset particles attributes
 */
-void QuadParticleManager::changeNumParticles(int new_number) {
+void PointParticleManager::changeNumParticles(int new_number) {
     if(!m_init){
         configureShaderProgram();
         m_init = true;
@@ -31,66 +34,55 @@ void QuadParticleManager::changeNumParticles(int new_number) {
 
     m_num_of_particles = new_number;
 
-    m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));// modified to draw triangles
+    m_particle_position.resize(m_num_of_particles, glm::vec4(0.0f));
     m_particle_velocity.resize(m_num_of_particles, glm::vec4(0.0f));
     m_particle_life.resize(m_num_of_particles, -1.0f);
     m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
 
     configureVAO();
-    configureTexture();//
-    enableGLBlend();
     initializeCL();
 }
 
-void QuadParticleManager::configureShaderProgram(){
-    m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/particle.vert", ":/resources/shaders/particle.frag");
+
+void PointParticleManager::configureShaderProgram(){
+    m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/pointparticle.vert", ":/resources/shaders/pointparticle.frag");
 }
+
 
 /* Bind VAO to VBO
  * m_posVBO -> pariticle's vertex
  * m_lifeVBO -> particle's color
 */
-void QuadParticleManager::configureVAO(){
+void PointParticleManager::configureVAO(){
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
 
     glGenBuffers(1, &m_posVBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles *sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
-    glVertexAttribDivisor(0, 1);
 
     glGenBuffers(1, &m_lifeVBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles* sizeof(float), NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(float), NULL, GL_DYNAMIC_DRAW);
     glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(1);
-    glVertexAttribDivisor(1, 1); //??
 
-//    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-//    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
-//    glEnableVertexAttribArray(0);
-
-
-//    glBindBuffer(GL_ARRAY_BUFFER, instanceSizeVBO);
-//    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, (void*)0);
-//    glEnableVertexAttribArray(2);
-//    glVertexAttribDivisor(2, 1);
     glBindVertexArray(0);
 }
 
 
 /* Bind VAO, update VBO
 */
-void QuadParticleManager::bindAndUpdateBuffers(){
+void PointParticleManager::bindAndUpdateBuffers(){
     // Bind the VAO
     glBindVertexArray(m_VAO);
 
     // Send (updated) pos data to the GPU, pos => vertex
     glBindBuffer(GL_ARRAY_BUFFER, m_posVBO);
-    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles * sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles * sizeof(glm::vec4), &m_particle_position[0]);
+    glBufferData(GL_ARRAY_BUFFER, m_num_of_particles*sizeof(glm::vec4), NULL, GL_DYNAMIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(glm::vec4), &m_particle_position[0]);
 
     // Send (updated) life data to the GPU, life => color
     glBindBuffer(GL_ARRAY_BUFFER, m_lifeVBO);
@@ -98,133 +90,39 @@ void QuadParticleManager::bindAndUpdateBuffers(){
     glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(float), &m_particle_life[0]);
 }
 
-void QuadParticleManager::configureTexture() {
-    m_texture_initalized = true;
-    //QString kitten_filepath = QString("../lab11-textures-FBOs-Erikwang317/resources/images/kitten.png");
-    //QString kitten_filepath = QString(":/resources/images/snowflakes.png");
-    QString texture_filepath = QString::fromStdString(settings.textureFilePath);
-    //std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
-    if (!m_image.load(texture_filepath)) {
-        std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
-        return;
-    }
-    std::cout << settings.textureFilePath << std::endl;
 
-    m_image = m_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
-    glGenTextures(1, &m_texture);
-    glBindTexture(GL_TEXTURE_2D, m_texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image.width(), m_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image.bits());
-
-    // Set the texture wrapping/filtering options (on the currently bound texture object)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-//    int width, height, nrChannels;
-//    unsigned char *data = stbi_load("path/to/texture.jpg", &width, &height, &nrChannels, 0);
-//    if (data) {
-//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-//        glGenerateMipmap(GL_TEXTURE_2D);
-//    } else {
-//        std::cout << "Failed to load texture" << std::endl;
-//    }
-//    stbi_image_free(data);
-
-    glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-void QuadParticleManager::updateTexture() {
-    //std::cout << "1111111111111" << std::endl;
-    if(!m_texture_initalized) return;
-    //    if(m_texture_initalized){
-    //        glDeleteTextures(1, &m_texture);
-    //        GLenum err = glGetError();
-    //        if (err != GL_NO_ERROR) {
-    //            std::cerr << "OpenGL error: " << gluErrorString(err) << std::endl;
-    //        }
-    //        m_texture = 0;
-    //        QImage().swap(m_image);
-    //    } else {
-    //        m_texture_initalized = true;
-    //    }
-    QImage image;
-    QString texture_filepath = QString::fromStdString(settings.textureFilePath);
-    if (!image.load(texture_filepath)) {
-        std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
-        return;
-    }
-    image = image.convertToFormat(QImage::Format_RGBA8888).mirrored();
-
-    glBindTexture(GL_TEXTURE_2D, m_texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
-
-    // Update texture settings if necessary
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    glBindTexture(GL_TEXTURE_2D, 0);
-    update();
-
-}
-
-
-void QuadParticleManager::enableGLBlend() {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
-
-void QuadParticleManager::initializeCL(){
+void PointParticleManager::initializeCL(){
     setupCL();
     setupKernel();
 }
 
-void QuadParticleManager::create(int id){
 
-    // Define the two triangles in CCW order
-    glm::vec3 center = glm::vec3(m_emit_pos);
-    glm::vec4 init_vel = m_init_vel;
+void PointParticleManager::create(int id){
+    m_particle_randVelOffset[id].x = 0.5*generateGaussianNoise(); //RAND
+    m_particle_randVelOffset[id].y = 0.5*generateGaussianNoise(); //RAND
+    m_particle_randVelOffset[id].z = 0.5*generateGaussianNoise(); //RAND
+    m_particle_randVelOffset[id].w = 0;
 
-    m_particle_position[id] = glm::vec4(center, 1.f);
-
-    m_particle_randVelOffset[id] = glm::vec4(0.1f * generateGaussianNoise(), // RAND
-                                             0.1f * generateGaussianNoise(), // RAND
-                                             0.1f * generateGaussianNoise(), // RAND
-                                             0.0f);
     m_particle_life[id] = m_max_life;
-    m_particle_velocity[id] = m_init_vel + m_particle_randVelOffset[id];
+    m_particle_position[id] = m_emit_pos;
+    float vel_x = 6.0f*glm::cos(2.0f*glm::pi<float>()*id/m_num_of_particles);
+    float vel_z = 6.0f*glm::sin(2.0f*glm::pi<float>()*id/m_num_of_particles);
+    m_particle_velocity[id] = glm::vec4(vel_x, 7.0f, vel_z, 0.0f)+m_particle_randVelOffset[id];
 }
 
 
-void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight, float aspectRatio){
+void PointParticleManager::render(const glm::mat4 &ViewProjection){
     if (m_num_of_particles == 0) return;
-
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_texture);
-    glUniform1i(glGetUniformLocation(m_shader, "u_texture"), 0);
 
     // bind VAO and update local vector data to VBO
     glUseProgram(m_shader);
     bindAndUpdateBuffers();
 
     glUniformMatrix4fv(glGetUniformLocation(m_shader, "u_ViewProjection"), 1, GL_FALSE, &ViewProjection[0][0]);
-    glUniform1f(glGetUniformLocation(m_shader, "u_aspectRatio"), aspectRatio);
-
-    //glm::vec3 worldUp(0.f, 1.f, 0.f);
-
-    glUniform3fv(glGetUniformLocation(m_shader, "u_cameraRight"), 1, &cameraRight[0]);
-
     glUniform4fv(glGetUniformLocation(m_shader, "u_bornColor"), 1, &m_bornColor[0]);
     glUniform4fv(glGetUniformLocation(m_shader, "u_deadColor"), 1, &m_deadColor[0]);
     glUniform1f(glGetUniformLocation(m_shader, "u_max_life"), m_max_life);
-    //glDrawArrays(GL_POINTS, 0, m_num_of_particles);
-
-    //glDrawArrays(GL_TRIANGLES, 0, m_num_of_particles); //draw triagnles
-
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 6, m_num_of_particles);
+    glDrawArrays(GL_POINTS, 0, m_num_of_particles);
 
     // Unbind VAO
     glBindVertexArray(0);
@@ -232,30 +130,18 @@ void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec
 }
 
 
-void QuadParticleManager::updateParticles(float dt, glm::vec4 cursor_pos) {
+void PointParticleManager::update(float dt) {
     // slowly increase the number of its particles to the max amount instead of shooting all at once
     if (m_active_particles < m_num_of_particles) {
         int batch = 10;
         int limit = std::min(m_num_of_particles - m_active_particles, batch);
 
-        // cursor not pressed down, -> no field force
-        if (cursor_pos.w == -1.0f){
-            for (int i = 0; i < limit; i++) {
-                create(m_active_particles);
-                m_active_particles++;
-            }
+        for (int i = 0; i < limit; i++) {
+            create(m_active_particles);
+            m_active_particles++;
         }
-        // cursor pressed down, -> drift the emission position too
-        else{
-            //m_emit_pos = m_emit_pos + 0.00005f*glm::vec4(glm::vec3(cursor_pos),0.0f);
-        }
-
     }
     else {
-        // cursor pressed down, -> drift the emission position too
-        if (cursor_pos.w != -1.0f){
-            //m_emit_pos = m_emit_pos + 0.00005f*glm::vec4(glm::vec3(cursor_pos),0.0f);
-        }
         m_active_particles = m_num_of_particles; // in case resized to a smaller particle number
     }
     setupBuffer();
@@ -268,10 +154,7 @@ void QuadParticleManager::updateParticles(float dt, glm::vec4 cursor_pos) {
     clSetKernelArg(m_clkernel, 1, sizeof(cl_mem), &m_clvelocityBuffer);
     clSetKernelArg(m_clkernel, 2, sizeof(cl_mem), &m_clrandVelOffsetBuffer);
     clSetKernelArg(m_clkernel, 3, sizeof(cl_mem), &m_cllifeBuffer);
-    clSetKernelArg(m_clkernel, 4, sizeof(glm::vec4), &m_init_vel[0]);
-    clSetKernelArg(m_clkernel, 5, sizeof(glm::vec4), &cursor_pos[0]);
-    clSetKernelArg(m_clkernel, 6, sizeof(glm::vec4), &m_emit_pos[0]);
-    clSetKernelArg(m_clkernel, 7, sizeof(float), &dt);
+    clSetKernelArg(m_clkernel, 4, sizeof(float), &dt);
 
     size_t workSize[1] = { (size_t)(m_num_of_particles) };
     error = clEnqueueNDRangeKernel(m_clcommandQueue,					// our command queue
@@ -324,7 +207,7 @@ void QuadParticleManager::updateParticles(float dt, glm::vec4 cursor_pos) {
 }
 
 
-void QuadParticleManager::setupCL(){
+void PointParticleManager::setupCL(){
     cl_int error;
 
     // determine how many OpenCL platforms we have
@@ -369,7 +252,7 @@ void QuadParticleManager::setupCL(){
 }
 
 
-void QuadParticleManager::setupKernel(){
+void PointParticleManager::setupKernel(){
     setenv("CL_LOG_ERRORS", "stdout", 1);
     // create kernel
     char *build_log;						// error log if compilation failed
@@ -382,8 +265,6 @@ void QuadParticleManager::setupKernel(){
     std::filesystem::path absolutePath = std::filesystem::absolute(relativePath);
     size_t source_size;
     char* source_str;
-//    std::cout << "absolutePath==============" << absolutePath << std::endl;
-//    std::cout << "RelativePath==============" << relativePath << std::endl;
 
     FILE *fp;
     fp = fopen(absolutePath.c_str(), "rb");
@@ -397,7 +278,7 @@ void QuadParticleManager::setupKernel(){
     source_str = (char*)malloc(MAX_SOURCE_SIZE);
     source_size = fread( source_str, 1, MAX_SOURCE_SIZE, fp);
     fclose( fp );
-    //std::cout << source_str << std::endl;
+    std::cout << source_str << std::endl;
 
     m_clprogram = clCreateProgramWithSource(m_clcontext, 1, (const char **)&source_str, (const size_t *)&source_size, &error);
     checkError("clCreateProgramWithSource()", error);
@@ -432,7 +313,7 @@ void QuadParticleManager::setupKernel(){
 }
 
 
-void QuadParticleManager::setupBuffer(){
+void PointParticleManager::setupBuffer(){
     // Create memory buffers on the device for each vector
     cl_int error;
 
@@ -459,10 +340,43 @@ void QuadParticleManager::setupBuffer(){
     error = clEnqueueWriteBuffer(m_clcommandQueue, m_cllifeBuffer, CL_TRUE, 0, m_num_of_particles*sizeof(float),
                                  m_particle_life.data(), 0, NULL, NULL);
     checkError("clEnqueueWriteBuffer(): m_cllifeBuffer", error);
+
+//    m_clpositionBuffer = clCreateBuffer(m_clcontext,
+//                                        CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+//                                        m_num_of_particles*sizeof(glm::vec3),
+//                                        m_particle_position.data(),
+//                                        &error
+//                                        );
+//    checkError("clCreateBuffer(): m_clpositionBuffer", error);
+
+//    m_clvelocityBuffer = clCreateBuffer(m_clcontext,
+//                                        CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+//                                        m_num_of_particles*sizeof(glm::vec3),
+//                                        m_particle_velocity.data(),
+//                                        &error
+//                                        );
+//    checkError("clCreateBuffer(): m_clvelocityBuffer", error);
+
+//    m_clrandVelOffsetBuffer = clCreateBuffer(m_clcontext,
+//                                             CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+//                                             m_num_of_particles*sizeof(glm::vec3),
+//                                             m_particle_randVelOffset.data(),
+//                                             &error
+//                                             );
+//    checkError("clCreateBuffer(): m_clrandVelOffsetBuffer", error);
+
+//    m_cllifeBuffer = clCreateBuffer(m_clcontext,
+//                                    CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+//                                    m_num_of_particles*sizeof(float),
+//                                    m_particle_life.data(),
+//                                    &error
+//                                    );
+//    checkError("clCreateBuffer(): m_cllifeBuffer", error);
+//
 }
 
 
-QuadParticleManager::~QuadParticleManager() {
+PointParticleManager::~PointParticleManager() {
     // Release OpenCL resources
     if (m_clcommandQueue) {
         clReleaseCommandQueue(m_clcommandQueue);
@@ -518,8 +432,6 @@ QuadParticleManager::~QuadParticleManager() {
     glDeleteBuffers(1, &m_posVBO);
     glDeleteBuffers(1, &m_lifeVBO);
     glDeleteVertexArrays(1, &m_VAO);
-    glDeleteTextures(1, &m_texture);
-    m_texture = 0;
 }
 
 

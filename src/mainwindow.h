@@ -7,7 +7,7 @@
 #include <QDoubleSpinBox>
 #include <QPushButton>
 #include "realtime.h"
-#include "QuadParticleManager.h"
+#include "PointParticleManager.h"
 #include "utils/aspectratiowidget/aspectratiowidget.hpp"
 
 class MainWindow : public QWidget
@@ -35,7 +35,6 @@ private:
     void connectExtraCredit();
 
     Realtime *realtime;
-    QuadParticleManager *quadParticleManager;
     AspectRatioWidget *aspectRatioWidget;
     QCheckBox *filter1;
     QCheckBox *filter2;
