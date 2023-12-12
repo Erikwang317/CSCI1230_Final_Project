@@ -68,7 +68,7 @@ class QuadParticleManager: public QOpenGLWidget {
 public:
     int m_active_particles = 0;
     int m_num_of_particles;
-    float m_max_life = 1.2f;
+    float m_max_life = 2.0f;
     std::string textureFilePath;
     bool m_texture_initalized = false;
     //    int MaxParticles = 100000;
@@ -99,8 +99,8 @@ private:
     bool m_init = false;
     glm::vec4 m_emit_pos;
     glm::vec4 m_init_vel = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-    glm::vec4 m_bornColor = glm::vec4(1.0f, 0.1f, 0.0f, 1.0f);
-    glm::vec4 m_deadColor = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+    glm::vec4 m_bornColor = glm::vec4(1.0f, 0.3f, 0.2f, 1.0f);
+    glm::vec4 m_deadColor = glm::vec4(1.0f, 1.0f, 0.5f, 1.0f);
 
     GLuint m_VAO;
     GLuint m_posVBO;

@@ -26,7 +26,7 @@ __kernel void particle(__global float4* position_list,
         life_list[i] = life_list[i] - 0.5*dt;
     }
     else{
-        life_list[i] = 1.2f;
+        life_list[i] = 2.0f;
         position_list[i].x = emission_pos.x;
         position_list[i].y = emission_pos.y;
         position_list[i].z = emission_pos.z;

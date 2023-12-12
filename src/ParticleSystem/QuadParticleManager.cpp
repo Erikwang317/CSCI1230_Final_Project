@@ -190,9 +190,9 @@ void QuadParticleManager::create(int id){
 
     m_particle_position[id] = glm::vec4(center, 1.f);
 
-    m_particle_randVelOffset[id] = glm::vec4(0.1f * generateGaussianNoise(), // RAND
-                                             0.1f * generateGaussianNoise(), // RAND
-                                             0.1f * generateGaussianNoise(), // RAND
+    m_particle_randVelOffset[id] = glm::vec4(0.05f * generateGaussianNoise(), // RAND
+                                             0.05f * generateGaussianNoise(), // RAND
+                                             0.05f * generateGaussianNoise(), // RAND
                                              0.0f);
     m_particle_life[id] = m_max_life;
     m_particle_velocity[id] = m_init_vel + m_particle_randVelOffset[id];

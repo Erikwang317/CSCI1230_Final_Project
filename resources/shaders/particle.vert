@@ -35,7 +35,7 @@ void main() {
     mat2 rotation = mat2(cos(time), -sin(time), sin(time), cos(time));
 
     // Add size
-    float size = 0.01f * (out_life/u_max_life) * u_aspectRatio;
+    float size = 0.005f * (out_life/u_max_life) * u_aspectRatio;
 
     // Calculate the world position for each vertex of the quad + rotation + size
     vec3 worldPosition = position.xyz

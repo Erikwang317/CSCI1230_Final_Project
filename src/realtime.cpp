@@ -76,7 +76,7 @@ void Realtime::paintGL() {
     glm::vec3 right = glm::cross(m_camera.getLook(), m_camera.getUp());
     float aspectRatio = m_camera.getAspectRatio();
 
-    m_QuadParticleManager.render(camViewProjection, right, aspectRatio);
+    m_ParticleManager.render(camViewProjection, right, aspectRatio);
 }
 
 void Realtime::resizeGL(int w, int h) {
@@ -105,7 +105,7 @@ void Realtime::sceneChanged() {
 
     std::cout << "void Realtime::sceneChanged()" << std::endl;
     std::cout << "m_QuadParticleManager.changeNumParticles(m_num_of_particles);" << std::endl;
-    m_QuadParticleManager.changeNumParticles(m_num_of_particles);
+    m_ParticleManager.changeNumParticles(m_num_of_particles);
 
     update(); // asks for a PaintGL() call to occur
 }
@@ -144,11 +144,12 @@ void Realtime::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void Realtime::mouseMoveEvent(QMouseEvent *event) {
-    int elapsedms   = m_elapsedTimer.elapsed();
-    float deltaTime = elapsedms * 0.1f;
-    m_elapsedTimer.restart();
 
     if (m_mouseDown) {
+        int elapsedms   = m_elapsedTimer.elapsed();
+        float deltaTime = elapsedms * 0.1f;
+        m_elapsedTimer.restart();
+
         int posX = event->position().x();
         int posY = event->position().y();
         int deltaX = posX - m_prev_mouse_pos.x;
@@ -160,11 +161,11 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
         //        m_camera.moveCameraMouseY(deltaY*0.005f);
 
         // invert the y because of the camera's position
-        float cursor_x = posX-size().width()/2;
-        float cursor_y = -(posY-size().height()/2);
+        float cursor_x = -(posX-size().width()/2);
+        float cursor_y = posY-size().height()/2;
         glm::vec4 cursor_pos = glm::vec4(cursor_x, cursor_y, 0.0f, 1.0f);
         std::cout << cursor_x << " " << cursor_y << std::endl;
-        m_QuadParticleManager.updateParticles(0.01*deltaTime, cursor_pos);
+        m_ParticleManager.updateParticles(0.01*deltaTime, cursor_pos);
 
         update(); // asks for a PaintGL() call to occur
     }
@@ -196,7 +197,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     }
 
     if (m_is_init){
-        m_QuadParticleManager.updateParticles(0.01*deltaTime);
+        m_ParticleManager.updateParticles(0.01*deltaTime);
     }
 
     update(); // asks for a PaintGL() call to occur
