@@ -14,7 +14,7 @@
 #include <QTimer>
 
 #include "utils/sceneparser.h"
-#include "src/ParticleSystem/QuadParticleManager.h"
+#include "src/ParticleSystem/PointParticleManager.h"
 #include "camera.h"
 
 
@@ -62,8 +62,8 @@ private:
 
     bool m_is_init = false;
 
-    int m_num_of_particles = 10000;
-    QuadParticleManager m_QuadParticleManager;
+    int m_num_of_particles = 100000;
+    PointParticleManager m_ParticleManager;
     RenderData m_renderData;
     Camera m_camera;
 };

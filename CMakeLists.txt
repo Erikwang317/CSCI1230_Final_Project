@@ -46,12 +46,8 @@ add_executable(${PROJECT_NAME}
 
     src/ParticleSystem/hello_world.h
     src/ParticleSystem/hello_world.cpp
-    src/ParticleSystem/QuadParticleManager.h
-    src/ParticleSystem/QuadParticleManager.cpp
-    src/ParticleSystem/particle.cl
-    src/ParticleSystem/hello_world.cl
-    resources.qrc
-
+    src/ParticleSystem/PointParticleManager.h
+    src/ParticleSystem/PointParticleManager.cpp
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
@@ -92,8 +88,9 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/default.vert
         resources/shaders/texture.frag
         resources/shaders/texture.vert
-        resources/shaders/particle.vert
-        resources/shaders/particle.frag
+        resources/shaders/pointparticle.vert
+        resources/shaders/pointparticle.frag
+
 )
 
 # GLEW: this provides support for Windows (including 64-bit)
@@ -110,9 +107,6 @@ if (MSVC OR MSYS OR MINGW)
   set(CMAKE_CXX_FLAGS "-Wno-volatile")
 endif()
 # Set this flag to silence warnings on MacOS
-#if (APPLE)
-#  set(CMAKE_CXX_FLAGS "-Wno-deprecated-volatile")
-#endif()
 if (APPLE)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+  set(CMAKE_CXX_FLAGS "-Wno-deprecated-volatile")
 endif()
