@@ -8,6 +8,7 @@
 	"INPUTS" : 
 	[
 		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/kitten.png",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/light.png",
 		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/snowflakes.png"
 	],
 	"LOCK_FILE" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-Release/CMakeFiles/final_project_playground_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",

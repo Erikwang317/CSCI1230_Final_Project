@@ -17,15 +17,21 @@ void main()
     vec4 particleColor = u_bornColor*(out_life/u_max_life) + 0.5*u_deadColor*(1.0f-out_life/u_max_life);
     vec4 textureColor = texture(u_texture, out_texCoords);
 
-    float blendFactor = 1;
-    fragColor = mix(particleColor, textureColor, blendFactor);
-    //fragColor = particleColor;
     float r = clamp(out_position.x, 0.f, 1.f);
     float g = clamp(out_position.z, 0.f, 1.f);
     float b = clamp(out_position.y, 0.f, 1.f);
 
-    fragColor = fragColor + 0.5*vec4(r,g,b,1.f);
-    fragColor.a = 0.f;
+    particleColor = particleColor + 0.5*vec4(r,g,b,1.f);
+
+    //fragColor = particleColor;
+
+
+    if(textureColor.a < 0.1f)
+        discard;
+
+    float blendFactor = 1.f;
+    fragColor = mix(particleColor, textureColor, blendFactor);
+
 
 //    fragColor = vec4(1.0f,1.0f,1.0f,1.0f);
 }

@@ -230,6 +230,8 @@ void MainWindow::connectUploadFile() {
 
 void MainWindow::connectUploadTextureFile() {
     connect(uploadTextureFile, &QPushButton::clicked, this, &MainWindow::onUploadTextureFile);
+    //connect(uploadTextureFile, &QPushButton::clicked, this, &QuadParticleManager::updateTexture);
+    //connect(mainWindow, &MainWindow::textureFileChanged, quadParticleManager, &QuadParticleManager::handleTextureFileChanged);
 }
 
 void MainWindow::connectSaveImage() {
@@ -318,8 +320,8 @@ void MainWindow::onUploadTextureFile() {
 
     std::cout << "Loaded texture file: \"" << configFilePath.toStdString() << "\"." << std::endl;
 
-    //emit textureFileChanged(configFilePath);
-    quadParticleManager->updateTexture();
+    emit textureFileChanged(configFilePath);
+    //quadParticleManager->updateTexture();
 }
 
 void MainWindow::onSaveImage() {
