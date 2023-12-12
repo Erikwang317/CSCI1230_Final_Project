@@ -48,8 +48,8 @@ add_executable(${PROJECT_NAME}
     src/ParticleSystem/hello_world.cpp
 
 
-    src/ParticleSystem/PointParticleManager.h
-    src/ParticleSystem/PointParticleManager.cpp
+    src/ParticleSystem/QuadParticleManager.h
+    src/ParticleSystem/QuadParticleManager.cpp
     src/ParticleSystem/particle.cl
     src/ParticleSystem/hello_world.cl
     resources.qrc
