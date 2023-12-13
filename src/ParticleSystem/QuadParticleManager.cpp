@@ -38,7 +38,7 @@ void QuadParticleManager::changeNumParticles(int new_number) {
 
     configureVAO();
     configureTexture(settings.textureFilePath, m_texture);//
-    configureTexture(":/resources/images/volcano_2.png",m_background_texture);
+    configureTexture(":/resources/images/nasus.png",m_background_texture);
     configureBackgroundTextureVAO();
     enableGLBlend();
     initializeCL();
@@ -97,12 +97,13 @@ void QuadParticleManager::configureBackgroundTextureVAO(){
 //        1.f, -1.f,  1.f * texCoordX, 0.f * texCoordY // Bottom Right
 //    };
     float size = 0.3f;
+    float offset = 0.3f;
     GLfloat quadVertices[] = {
         // Positions   // TexCoords
-        -1.f * size,  1.f * size,  0.f * texCoordX, 1.f * texCoordY, // Top Left
-        -1.f * size, -1.f * size,  0.f * texCoordX, 0.f * texCoordY, // Bottom Left
-        1.f * size,  1.f * size,  1.f * texCoordX, 1.f * texCoordY, // Top Right
-        1.f * size, -1.f * size,  1.f * texCoordX, 0.f * texCoordY // Bottom Right
+        -1.f * size ,  1.f * size + offset,  0.f * texCoordX, 1.f * texCoordY, // Top Left
+        -1.f * size , -1.f * size + offset,  0.f * texCoordX, 0.f * texCoordY, // Bottom Left
+        1.f * size ,  1.f * size + offset,  1.f * texCoordX, 1.f * texCoordY, // Top Right
+        1.f * size , -1.f * size + offset,  1.f * texCoordX, 0.f * texCoordY // Bottom Right
     };
 
 
