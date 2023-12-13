@@ -1,3 +1,4 @@
+#include <vector>
 #include "Cone.h"
 
 void Cone::updateParams(int param1, int param2) {

@@ -80,7 +80,7 @@ void Realtime::paintGL() {
 }
 
 void Realtime::resizeGL(int w, int h) {
-    std::cout << "resizeGL(" << w << "," << h << ")" << std::endl;
+    //std::cout << "resizeGL(" << w << "," << h << ")" << std::endl;
     // Tells OpenGL how big the screen is
     glViewport(0, 0, size().width()*m_devicePixelRatio, size().height()*m_devicePixelRatio);
 }

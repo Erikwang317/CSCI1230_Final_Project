@@ -1,4 +1,3 @@
-#include <stdexcept>
 #include "camera.h"
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>

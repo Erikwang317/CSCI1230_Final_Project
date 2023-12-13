@@ -62,7 +62,7 @@ private:
 
     bool m_is_init = false;
 
-    int m_num_of_particles = 100000;
+    int m_num_of_particles = 10000; //100000
     QuadParticleManager m_ParticleManager;
     RenderData m_renderData;
     Camera m_camera;

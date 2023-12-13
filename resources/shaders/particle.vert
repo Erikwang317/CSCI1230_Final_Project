@@ -39,8 +39,8 @@ void main() {
 
     // Calculate the world position for each vertex of the quad + rotation + size
     vec3 worldPosition = position.xyz
-                         + u_cameraRight * (rotation * offsets[gl_VertexID % 4]).x * size * 0.175f
-                         + u_cameraUp * (rotation * offsets[gl_VertexID % 4]).y * size;
+        + u_cameraRight * (rotation * offsets[gl_VertexID % 4]).x * size * 0.175f
+        + u_cameraUp * (rotation * offsets[gl_VertexID % 4]).y * size;
 
     out_position = vec4(worldPosition, 1.f);
     gl_Position = u_ViewProjection * vec4(worldPosition, 1.f);
