@@ -1,0 +1,25 @@
+{
+	"BUILD_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-MinSizeRel/final_project_playground_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-MinSizeRel",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-MinSizeRel",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project",
+	"CMAKE_SOURCE_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project",
+	"INCLUDE_DIR" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-MinSizeRel/final_project_playground_autogen/include",
+	"INPUTS" : 
+	[
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/kitten.png",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/volcano.png",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/volcano_2.png",
+		"/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources/images/snowflakes.png"
+	],
+	"LOCK_FILE" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-MinSizeRel/CMakeFiles/final_project_playground_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/Users/wangbing000317/Qt/6.5.2/macos/./libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/build/build-CSCI1230_Final_Project-Qt_6_5_2_for_macOS-MinSizeRel/CMakeFiles/final_project_playground_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/Users/wangbing000317/Desktop/cs1230/CSCI1230_Final_Project/resources.qrc",
+	"VERBOSITY" : 0
+}

@@ -106,7 +106,11 @@ private:
     GLuint m_lifeVBO;
     GLuint m_shader;
     GLuint m_texture;
+    GLuint m_background_texture;
     QImage m_image;
+
+    GLuint m_backgroundVAO;
+    GLuint m_backgroundVBO;
     // Gluint m_indicesVBO; // quad
     // GLuint m_transformationsVBO; // quad
     // GLuint m_rotationsVBO; // quad
@@ -122,9 +126,10 @@ private:
     cl_context          m_clcontext;
 
     void configureVAO();
+    void configureBackgroundTextureVAO();
     void configureShaderProgram();
     void bindAndUpdateBuffers();
-    void configureTexture();
+    void configureTexture(std::string texturePath, GLuint &texture);
     void enableGLBlend();
 
     void initializeCL();

@@ -5,7 +5,7 @@
 
 struct Settings {
     std::string sceneFilePath;
-    std::string textureFilePath = ":/resources/images/kitten.png";
+    std::string textureFilePath = ":/resources/images/poop_emoji.png";
     int shapeParameter1 = 1;
     int shapeParameter2 = 1;
     float nearPlane = 1;

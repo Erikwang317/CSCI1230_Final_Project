@@ -31,7 +31,7 @@ void main() {
     out_texCoords = texCoords[gl_VertexID % 4];
     // Calculate the world position for each vertex of the quad
 
-    float size = 0.1f * (out_life/u_max_life) * u_aspectRatio;
+    float size = 0.3f * (out_life/u_max_life) * u_aspectRatio;
     vec3 worldPosition = position.xyz
                          + u_cameraRight * offsets[gl_VertexID % 4].x * size * 0.175f
                          + u_cameraUp * offsets[gl_VertexID % 4].y * size;

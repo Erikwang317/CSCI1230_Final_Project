@@ -37,7 +37,9 @@ void QuadParticleManager::changeNumParticles(int new_number) {
     m_particle_randVelOffset.resize(m_num_of_particles, glm::vec4(0.0f));
 
     configureVAO();
-    configureTexture();//
+    configureTexture(settings.textureFilePath, m_texture);//
+    configureTexture(":/resources/images/toilet.png",m_background_texture);
+    configureBackgroundTextureVAO();
     enableGLBlend();
     initializeCL();
 }
@@ -80,6 +82,57 @@ void QuadParticleManager::configureVAO(){
     glBindVertexArray(0);
 }
 
+void QuadParticleManager::configureBackgroundTextureVAO(){
+    float textureAspectRatio = static_cast<float>(m_image.width()) / static_cast<float>(m_image.height());
+
+    float screenAspectRatio = static_cast<float>(this->width()) / static_cast<float>(this->height());
+    //std::cout << "screenAspectRatio =========="<< screenAspectRatio << std::endl;
+
+    float texCoordX = 1.0f;
+    float texCoordY = 1.0f;
+
+    if (textureAspectRatio < screenAspectRatio) {
+
+        texCoordX = textureAspectRatio / screenAspectRatio;
+    } else {
+
+        texCoordY = screenAspectRatio / textureAspectRatio;
+    }
+
+    //    GLfloat quadVertices[] = {
+    //        // Positions   // TexCoords
+    //        -1.f,  1.f,  0.f * texCoordX, 1.f * texCoordY, // Top Left
+    //        -1.f, -1.f,  0.f * texCoordX, 0.f * texCoordY, // Bottom Left
+    //        1.f,  1.f,  1.f * texCoordX, 1.f * texCoordY, // Top Right
+    //        1.f, -1.f,  1.f * texCoordX, 0.f * texCoordY // Bottom Right
+    //    };
+    float size = 1.5f;
+    float offset = 1.f;
+    GLfloat quadVertices[] = {
+        // Positions   // TexCoords
+        -1.f * size ,  1.f * size + offset,  0.f * texCoordX, 1.f * texCoordY, // Top Left
+        -1.f * size , -1.f * size + offset,  0.f * texCoordX, 0.f * texCoordY, // Bottom Left
+        1.f * size ,  1.f * size + offset,  1.f * texCoordX, 1.f * texCoordY, // Top Right
+        1.f * size , -1.f * size + offset,  1.f * texCoordX, 0.f * texCoordY // Bottom Right
+    };
+
+
+    // Setup screen VAO
+    glGenVertexArrays(1, &m_backgroundVAO);
+    glGenBuffers(1, &m_backgroundVBO);
+    glBindVertexArray(m_backgroundVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_backgroundVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+    // Position attribute
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+    // TexCoord attribute
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat)));
+    glBindVertexArray(0); // Unbind VAO
+}
+
+
 
 /* Bind VAO, update VBO
 */
@@ -98,11 +151,11 @@ void QuadParticleManager::bindAndUpdateBuffers(){
     glBufferSubData(GL_ARRAY_BUFFER, 0, m_num_of_particles*sizeof(float), &m_particle_life[0]);
 }
 
-void QuadParticleManager::configureTexture() {
+void QuadParticleManager::configureTexture(std::string texturePath, GLuint &texture) {
     m_texture_initalized = true;
     //QString kitten_filepath = QString("../lab11-textures-FBOs-Erikwang317/resources/images/kitten.png");
     //QString kitten_filepath = QString(":/resources/images/snowflakes.png");
-    QString texture_filepath = QString::fromStdString(settings.textureFilePath);
+    QString texture_filepath = QString::fromStdString(texturePath);
     //std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
     if (!m_image.load(texture_filepath)) {
         std::cerr << "Failed to load texture from: " << texture_filepath.toStdString() << std::endl;
@@ -111,8 +164,8 @@ void QuadParticleManager::configureTexture() {
     std::cout << settings.textureFilePath << std::endl;
 
     m_image = m_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
-    glGenTextures(1, &m_texture);
-    glBindTexture(GL_TEXTURE_2D, m_texture);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image.width(), m_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image.bits());
 
     // Set the texture wrapping/filtering options (on the currently bound texture object)
@@ -121,33 +174,11 @@ void QuadParticleManager::configureTexture() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-//    int width, height, nrChannels;
-//    unsigned char *data = stbi_load("path/to/texture.jpg", &width, &height, &nrChannels, 0);
-//    if (data) {
-//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-//        glGenerateMipmap(GL_TEXTURE_2D);
-//    } else {
-//        std::cout << "Failed to load texture" << std::endl;
-//    }
-//    stbi_image_free(data);
-
     glBindTexture(GL_TEXTURE_2D, 0);
 }
-
 void QuadParticleManager::updateTexture() {
     //std::cout << "1111111111111" << std::endl;
     if(!m_texture_initalized) return;
-    //    if(m_texture_initalized){
-    //        glDeleteTextures(1, &m_texture);
-    //        GLenum err = glGetError();
-    //        if (err != GL_NO_ERROR) {
-    //            std::cerr << "OpenGL error: " << gluErrorString(err) << std::endl;
-    //        }
-    //        m_texture = 0;
-    //        QImage().swap(m_image);
-    //    } else {
-    //        m_texture_initalized = true;
-    //    }
     QImage image;
     QString texture_filepath = QString::fromStdString(settings.textureFilePath);
     if (!image.load(texture_filepath)) {
@@ -199,13 +230,26 @@ void QuadParticleManager::create(int id){
 
 void QuadParticleManager::render(const glm::mat4 &ViewProjection, const glm::vec3 &cameraRight, float aspectRatio){
     if (m_num_of_particles == 0) return;
+    glUseProgram(m_shader);
 
+    //render background
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_background_texture);
+    glUniform1i(glGetUniformLocation(m_shader, "u_background_texture"), 0);
+    glUniform1i(glGetUniformLocation(m_shader, "u_isBackground"), 1);
+
+    // Assuming you have a VAO for the background
+    glBindVertexArray(m_backgroundVAO);
+    //glDrawArrays(GL_TRIANGLE_STRIP, 0, 6);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glBindVertexArray(0); // Unbind the VAO
+
+    // render particle
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_texture);
     glUniform1i(glGetUniformLocation(m_shader, "u_texture"), 0);
 
     // bind VAO and update local vector data to VBO
-    glUseProgram(m_shader);
     bindAndUpdateBuffers();
 
     glUniformMatrix4fv(glGetUniformLocation(m_shader, "u_ViewProjection"), 1, GL_FALSE, &ViewProjection[0][0]);

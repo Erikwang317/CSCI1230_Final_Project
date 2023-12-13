@@ -3,5 +3,14 @@
         <file>resources/images/snowflakes.png</file>
         <file>resources/images/kitten.png</file>
         <file>resources/images/light.png</file>
+        <file>resources/images/nasus.png</file>
+        <file>resources/images/volcano_2.png</file>
+        <file>resources/images/volcano_3.png</file>
+        <file>resources/images/volcano.png</file>
+        <file>resources/images/heal_2.png</file>
+        <file>resources/images/heal.png</file>
+        <file>resources/images/heal_transparent.png</file>
+        <file>resources/images/poop_emoji.png</file>
+        <file>resources/images/toilet.png</file>
     </qresource>
 </RCC>
